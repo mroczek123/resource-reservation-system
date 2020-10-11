@@ -1,0 +1,304 @@
+openapi: 3.0.0
+info:
+  title: ResourceReservationSystem
+  version: '1.0'
+  description: Api for Resources reservation system
+servers:
+  - url: 'http://localhost:3000'
+paths:
+  /users:
+    get:
+      summary: Get all Users
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+      operationId: get-users
+      description: Get all Users
+      tags:
+        - User
+        - list
+        - get
+    post:
+      summary: Create User
+      operationId: post-users
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                password:
+                  type: string
+                repeatPassword:
+                  type: string
+                '':
+                  type: string
+      tags:
+        - User
+        - create
+        - post
+  /resources:
+    get:
+      summary: Get all Resources
+      tags:
+        - Resource
+        - list
+        - get
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Resource'
+      operationId: get-resources
+      description: Get all Resources
+    post:
+      summary: Create Resource
+      operationId: post-resources
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Resource
+        - post
+        - create
+    parameters: []
+  /categories:
+    get:
+      summary: List Categories
+      tags:
+        - list
+        - get
+        - Category
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Category'
+      operationId: get-categories
+      description: Get all Categories
+    parameters: []
+    post:
+      summary: Create Category
+      operationId: post-categories
+      responses:
+        '200':
+          description: OK
+      tags:
+        - create
+        - post
+        - Category
+  '/categories/{id}':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    get:
+      summary: Get Category by id
+      responses: {}
+      operationId: get-categories-id
+      description: Get exact Category
+      tags:
+        - get
+        - Category
+    delete:
+      summary: Delete Category
+      operationId: delete-categories-id
+      responses:
+        '200':
+          description: OK
+      tags:
+        - delete
+        - Category
+  '/resources/{id}':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    get:
+      summary: Get exact Resource
+      tags:
+        - Resource
+        - get
+      responses: {}
+      operationId: get-resources-id
+      description: Get exact Recource
+    delete:
+      summary: Delete Resource
+      operationId: delete-resources-id
+      responses:
+        '200':
+          description: OK
+      tags:
+        - Resource
+        - delete
+  '/users/{id}':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    get:
+      summary: Get exact User
+      tags:
+        - User
+        - get
+      responses: {}
+      operationId: get-users-id
+      description: Get exact User
+    delete:
+      summary: Delete User
+      operationId: delete-users-id
+      responses:
+        '200':
+          description: OK
+      tags:
+        - User
+        - delete
+  /users/login:
+    post:
+      summary: Login endpoint
+      operationId: post-users-login
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+        description: Login data
+      description: Login endpoint
+      tags:
+        - login
+        - post
+        - User
+  /users/logout:
+    post:
+      summary: Logout endpoint
+      operationId: post-users-logout
+      responses:
+        '200':
+          description: OK
+      description: Logout endpoint
+      tags:
+        - logout
+        - post
+        - User
+components:
+  schemas:
+    User:
+      title: User
+      type: object
+      properties:
+        id:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        address:
+          $ref: '#/components/schemas/Address'
+        birthDate:
+          type: string
+          description: |
+            ISO 8601 Date
+          example: '2020-10-11T11:24:56+00:00'
+        role:
+          $ref: '#/components/schemas/UserRole'
+      required:
+        - id
+        - firstName
+        - lastName
+        - address
+        - birthDate
+    Resource:
+      title: Resource
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        category:
+          $ref: '#/components/schemas/Category'
+        maxUsers:
+          type: integer
+    Category:
+      title: Category
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        parentCategory:
+          $ref: '#/components/schemas/Category'
+    UserRoleEnum:
+      type: string
+      enum:
+        - Admin
+        - Owner
+        - User
+        - Guest
+      description: User Role Enum
+      title: ''
+      x-examples: {}
+    Address:
+      title: Address
+      type: object
+      properties:
+        street:
+          type: string
+        buildingNumber:
+          type: string
+        apartmentNumber:
+          type: string
+        postCode:
+          type: string
+        city:
+          type: string
+        country:
+          type: string
+  securitySchemes:
+    ApiKey:
+      name: ApiKey
+      type: apiKey
+      in: cookie
+tags:
+  - name: logout
+  - name: post
+  - name: list
+  - name: get
+  - name: create
+  - name: delete
+  - name: Category
+  - name: Resource
+  - name: User
+  - name: login
