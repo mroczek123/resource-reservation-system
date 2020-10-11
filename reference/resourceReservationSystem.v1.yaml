@@ -231,7 +231,7 @@ components:
             ISO 8601 Date
           example: '2020-10-11T11:24:56+00:00'
         role:
-          $ref: '#/components/schemas/UserRole'
+          $ref: '#/components/schemas/UserRoleEnum'
       required:
         - id
         - firstName
