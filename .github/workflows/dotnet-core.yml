@@ -11,10 +11,11 @@ jobs:
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: 3.1.301
-      - name: Setup Dredd
+      - name: Setup Node.js
         uses: actions/setup-node@v1
         with:
           node-version: '14'
+      - name: Setup dredd
         run: npm install -g dredd
       - name: Install dependencies
         run: dotnet restore
