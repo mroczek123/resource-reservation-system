@@ -1,6 +1,6 @@
 name: backend
 
-on: [push, pull_request]
+on: push
 
 jobs:
   tests:
@@ -27,7 +27,7 @@ jobs:
         run: dotnet test
         working-directory: ${{env.working-directory}}
       - name: Run backend
-        run: dotnet run
+        run: dotnet run &
         working-directory: ${{env.working-directory}}
       - name: Test integration
         run: dredd ./reference/resourceReservationSystem.v1.yaml 127.0.0.1:5000
