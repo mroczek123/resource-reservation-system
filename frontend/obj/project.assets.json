@@ -1637,19 +1637,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Maciej Kulesza\\.nuget\\packages\\": {}
+    "C:\\Users\\mckku\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Maciej Kulesza\\projekty\\resource-reservation-system\\frontend\\frontend.csproj",
+      "projectUniqueName": "C:\\Users\\mckku\\Projekty\\resource-reservation-system\\frontend\\frontend.csproj",
       "projectName": "frontend",
-      "projectPath": "C:\\Users\\Maciej Kulesza\\projekty\\resource-reservation-system\\frontend\\frontend.csproj",
-      "packagesPath": "C:\\Users\\Maciej Kulesza\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Maciej Kulesza\\projekty\\resource-reservation-system\\frontend\\obj\\",
+      "projectPath": "C:\\Users\\mckku\\Projekty\\resource-reservation-system\\frontend\\frontend.csproj",
+      "packagesPath": "C:\\Users\\mckku\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\mckku\\Projekty\\resource-reservation-system\\frontend\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Maciej Kulesza\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\mckku\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -1707,7 +1707,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.403\\RuntimeIdentifierGraph.json"
       }
     }
   }

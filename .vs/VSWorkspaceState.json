@@ -1,0 +1,12 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\frontend",
+    "\\frontend\\Pages",
+    "\\frontend\\Pages\\authentication",
+    "\\frontend\\Shared",
+    "\\frontend\\wwwroot"
+  ],
+  "SelectedNode": "\\frontend\\Shared\\MainLayout.razor",
+  "PreviewInSolutionExplorer": false
+}
