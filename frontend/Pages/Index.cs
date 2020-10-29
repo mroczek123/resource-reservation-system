@@ -1,10 +1,9 @@
 using Microsoft.AspNetCore.Components;
 
-namespace Dupa
+namespace frontend.Pages.Index
 {
     public class IndexBase : ComponentBase
     {
 
     }
 }
-
