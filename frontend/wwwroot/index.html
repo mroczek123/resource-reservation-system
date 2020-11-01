@@ -1,23 +1,31 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>frontend</title>
+    <title>Restaurant reservation system</title>
     <base href="/" />
-    <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <!-- Materialize CSS -->
+    <link rel="stylesheet" href="css/materialize.min.css">
     <link href="css/app.css" rel="stylesheet" />
 </head>
 
 <body>
     <app>Loading...</app>
+    <script>
+        const NAME = 'ActiveLanguage';
 
-    <div id="blazor-error-ui">
-        An unhandled error has occurred.
-        <a href="" class="reload">Reload</a>
-        <a class="dismiss">🗙</a>
-    </div>
+        function getLanguage() {
+            let result = window.localStorage[NAME];
+            return result ? result : navigator.language || navigator.userLanguage || 'en';
+        }
+
+        function setLanguage(value) {
+            window.localStorage[NAME] = value
+        }
+    </script>
+    <script src="js/materialize.min.js"></script>
     <script src="_framework/blazor.webassembly.js"></script>
 </body>
 
