@@ -3,10 +3,9 @@
     "",
     "\\frontend",
     "\\frontend\\Pages",
-    "\\frontend\\Pages\\authentication",
     "\\frontend\\Shared",
-    "\\frontend\\wwwroot"
+    "\\frontend\\wwwroot\\js"
   ],
-  "SelectedNode": "\\frontend\\Shared\\MainLayout.razor",
+  "SelectedNode": "\\frontend\\Shared\\NavMenu.razor",
   "PreviewInSolutionExplorer": false
 }
