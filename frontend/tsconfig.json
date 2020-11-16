@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist/",
+    "baseUrl": ".",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "alwaysStrict": true,
+    "strict": true,
+    "jsx": "react",
+    "paths":{
+      "@src/*": ["./src/*"],
+      "@static/*": ["./src/static/*"],
+    }
+  },
+  "exclude": ["node_modules", "dist"]
+}
