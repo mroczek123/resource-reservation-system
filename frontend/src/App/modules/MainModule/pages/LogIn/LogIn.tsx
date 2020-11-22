@@ -15,7 +15,7 @@ function LogIn(props: StateProps & ParentRouteProp) {
     <div style={{ height: "100vh" }}>
       <div className="valign-wrapper" style={{ height: "100%" }}>
         <div className="container">
-          <div className="card">
+          <div className="card z-depth-2" style={{padding: "60px"}}>
             <div className="row center-align">
               <img
                 className="responsive-img"

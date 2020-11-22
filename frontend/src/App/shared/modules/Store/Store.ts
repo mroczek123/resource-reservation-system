@@ -17,13 +17,10 @@ export function defaultMapStateToProps<T>(state: StoreState, ownProps: T): T & S
   return {...ownProps, state}
 }
 
-export function connect<T>(component: T, mapStateToPropsFunction = defaultMapStateToProps): T { // TODO: remove Any
-  return redux_connect(mapStateToPropsFunction)(component as unknown as ComponentType) as unknown as T;
-}
-
 function mainReducer(state: StoreState=defaultState, action:Action): StoreState {
   console.log("received" + JSON.stringify(action));
   return {...state, ...action.payload};
 }
-const store = createStore(mainReducer)
+const store = createStore(mainReducer);
+export const connect = redux_connect(defaultMapStateToProps);
 export default store;

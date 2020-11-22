@@ -1,6 +1,5 @@
-import { connect } from "@src/App/shared/modules/Store/Store";
-
 import * as React from "react";
+import { connect } from "../modules/Store/Store";
 import StateProps from "../modules/Store/types/StateProps";
 
 function Footer(props: StateProps) {
