@@ -2,6 +2,6 @@ namespace entity.order
 {
     public class User
     {
-        public long id { get; set; }
+        public long ID { get; set; }
     }
 }

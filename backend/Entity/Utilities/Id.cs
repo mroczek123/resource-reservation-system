@@ -1,6 +1,6 @@
 namespace entity.order
 {
-    public class Id
+    public class ID
     {
         
     }

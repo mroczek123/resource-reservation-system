@@ -6,7 +6,7 @@ namespace backend.entity.product
 {
     class ProductConfiguration
     {
-        public string configName { get; set; }
+        public string ConfigName { get; set; }
         // dodac Array options
     }
 }

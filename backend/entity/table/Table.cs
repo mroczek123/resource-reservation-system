@@ -2,9 +2,9 @@ namespace entity.order
 {
     public class Table
     {
-        public int id { get; set; }
-        public string name { get; set; }
-        public int size { get; set; }
+        public int ID { get; set; }
+        public string Name { get; set; }
+        public int Size { get; set; }
         public enum status { };
     }
 }
