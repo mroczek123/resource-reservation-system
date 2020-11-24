@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Darek\\source\\repos\\resource-reservation-system\\backend\\backend.csproj": {}
+    "C:\\Users\\Darek\\Source\\Repos\\resource-reservation-system\\backend\\backend.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Darek\\source\\repos\\resource-reservation-system\\backend\\backend.csproj": {
+    "C:\\Users\\Darek\\Source\\Repos\\resource-reservation-system\\backend\\backend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Darek\\source\\repos\\resource-reservation-system\\backend\\backend.csproj",
+        "projectUniqueName": "C:\\Users\\Darek\\Source\\Repos\\resource-reservation-system\\backend\\backend.csproj",
         "projectName": "backend",
-        "projectPath": "C:\\Users\\Darek\\source\\repos\\resource-reservation-system\\backend\\backend.csproj",
+        "projectPath": "C:\\Users\\Darek\\Source\\Repos\\resource-reservation-system\\backend\\backend.csproj",
         "packagesPath": "C:\\Users\\Darek\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Darek\\source\\repos\\resource-reservation-system\\backend\\obj\\",
+        "outputPath": "C:\\Users\\Darek\\Source\\Repos\\resource-reservation-system\\backend\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Darek\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -37,6 +37,16 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "MySql.Data": {
+              "target": "Package",
+              "version": "[8.0.22, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
