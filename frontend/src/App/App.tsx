@@ -12,7 +12,7 @@ function App(): JSX.Element {
     <Provider store={Store}>
       <BrowserRouter>
         {Router}
-        <Footer/>
+        <Footer />
       </BrowserRouter>
     </Provider>
   );
@@ -21,7 +21,7 @@ function App(): JSX.Element {
 const Router = (
   <Switch>
     <Route exact path="/">
-      <Redirect to="/welcome"/>
+      <Redirect to="/welcome" />
     </Route>
     <Route path="/app/">
       <MainModule />
@@ -29,8 +29,11 @@ const Router = (
     <Route path="/welcome">
       <LandingModule />
     </Route>
-    <Route>
+    <Route path="/404">
       <Page404 />
+    </Route>
+    <Route>
+      <Redirect to="/404" />
     </Route>
   </Switch>
 );

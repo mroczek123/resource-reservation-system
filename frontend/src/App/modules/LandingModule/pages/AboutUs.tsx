@@ -1,7 +1,6 @@
-import { connect } from "@src/App/shared/modules/Store/Store";
-import StateProps from "@src/App/shared/modules/Store/types/StateProps";
 import * as React from "react";
-function AboutUs(props: StateProps) {
+
+function AboutUs(props: unknown): JSX.Element {
   const authors = [
     {
       name: "Patryk Kirszenstein",
@@ -27,7 +26,7 @@ function AboutUs(props: StateProps) {
     <div style={{ height: "100vh" }}>
       <div className="container center-align">
         <div className="row">
-          <h2 className={`${props.state.theme}-text`}>Team</h2>
+          <h2>Team</h2>
         </div>
         <div className="row">
           {authors.map((author) => (
@@ -39,9 +38,11 @@ function AboutUs(props: StateProps) {
                     className="circle responsive-img"
                     style={{ height: "150px" }}
                   />
-                  <h3>{author.name}</h3>
-                  <h4>{author.title}</h4>
-                  {author.description}
+                  <div className="container">
+                    <h3>{author.name}</h3>
+                    <h4>{author.title}</h4>
+                    {author.description}
+                  </div>
                 </div>
               </div>
             </div>
@@ -52,4 +53,4 @@ function AboutUs(props: StateProps) {
   );
 }
 
-export default connect(AboutUs);
+export default AboutUs;

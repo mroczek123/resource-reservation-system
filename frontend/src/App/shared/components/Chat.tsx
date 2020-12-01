@@ -1,15 +1,13 @@
 import * as React from "react";
-import { connect } from "../modules/Store/Store";
-import StateProps from "../modules/Store/types/StateProps";
 import StyleProps from "../types/StyleProps";
 
-function Chat(props: StateProps & StyleProps) {
+function Chat(props: StyleProps): JSX.Element {
   return (
-    <a className={`btn-floating btn-large pulse ${props.state.theme}`} style={props.style}>
+    <a className={`btn-floating btn-large pulse`} style={props.style}>
       <i className="material-icons">chat_bubble_outline</i>
     </a>
   )
 
 }
 
-export default connect(Chat);
+export default Chat;

@@ -1,6 +1,5 @@
 import * as path from "path";
 import * as CopyWebpackPlugin from "copy-webpack-plugin";
-import * as express from "express";
 
 const config = {
   entry: path.join(__dirname, "src", "index.tsx"),
@@ -23,6 +22,14 @@ const config = {
         use: "ts-loader",
         exclude: /node_modules/,
       },
+      {
+        test: /\.s[ac]ss$/i,
+        use: [
+          "style-loader",
+          "css-loader",
+          "sass-loader",
+        ],
+      },
     ],
   },
   plugins: [
@@ -38,15 +45,7 @@ const config = {
         },
       ],
     }),
-  ],
-  devServer: {
-    compress: true,
-    port: 8000,
-    before: (app: any, server: any, compiler: any) => {
-      app.use("/static", express.static(path.join(__dirname, "dist", "static")))
-      app.get("*", (req: any, res: any) => res.sendFile(path.join(__dirname, "dist", "index.html")));
-    }
-  },
+  ]
 };
 
 export default config;

@@ -1,18 +1,17 @@
 import Chat from "@src/App/shared/components/Chat";
 import NavBar from "@src/App/shared/modules/Materialize/components/NavBar";
-import { connect } from "@src/App/shared/modules/Store/Store";
-import StateProps from "@src/App/shared/modules/Store/types/StateProps";
 import * as React from "react";
 import { Link, Route, Switch, useRouteMatch } from "react-router-dom";
 
 import AboutUs from "./pages/AboutUs";
 import HomePage from "./pages/HomePage";
 
-function LandingModule(props: StateProps) {
+
+function LandingModule(props: unknown): JSX.Element {
   const routeMatch = useRouteMatch();
   return (
     <>
-      <NavBar title="Resource Reservation System" className={props.state.theme}>
+      <NavBar title="Resource Reservation System">
         <li>
           <Link to="/">Home</Link>
         </li>
@@ -20,10 +19,10 @@ function LandingModule(props: StateProps) {
           <Link to={`${routeMatch.url}/about-us`}>About us</Link>
         </li>
         <li>
-          <Link to="/app/log-in">Log in</Link>
+          <Link to="/app/account/log-in">Log in</Link>
         </li>
         <li>
-          <Link to="/app/register">Register</Link>
+          <Link to="/app/account/register">Register</Link>
         </li>
       </NavBar>
       <Router parentRoute={routeMatch.url} />
@@ -31,7 +30,7 @@ function LandingModule(props: StateProps) {
       <Chat style={{ position: "fixed", bottom: "50px", right: "50px" }} />
     </>
   );
-};
+}
 
 const Router = (props: { parentRoute: string }) => (
   <Switch>
@@ -44,4 +43,4 @@ const Router = (props: { parentRoute: string }) => (
   </Switch>
 );
 
-export default connect(LandingModule);
+export default LandingModule;

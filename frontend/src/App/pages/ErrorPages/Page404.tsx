@@ -1,10 +1,13 @@
 import * as React from "react";
 function Page404(): JSX.Element {
   return (
-    <>
-    404 zbłądziłeś do krainy jednorożców<br/>
-    🦄🦄🦄🦄🦄🦄🦄🦄🦄🦄🦄🦄🦄🦄🦄🦄
-    </>
+    <div style={{height: "100vh"}} className="valign-wrapper">
+      <div className="container">
+        TY PATRZ :O<br/>
+        JEDNOROŻEC<br/>
+      <div style={{fontSize: "30em"}} className="center-align">🦄</div>
+      </div>
+    </div>
   )
 }
 

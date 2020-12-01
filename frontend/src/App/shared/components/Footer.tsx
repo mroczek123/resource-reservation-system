@@ -4,7 +4,7 @@ import StateProps from "../modules/Store/types/StateProps";
 
 function Footer(props: StateProps) {
   return (
-    <footer className={`${props.state.theme} page-footer`} style={{ minHeight: "100px" }}>
+    <footer className={`page-footer`} style={{ minHeight: "100px" }}>
       <div className="container">
         <div className="footer-copyright">
           <div className="container">
