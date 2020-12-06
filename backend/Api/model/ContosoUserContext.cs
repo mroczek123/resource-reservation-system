@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using ContosoPets.Api.Models;
+using entity.order;
 
 
 namespace DefaultNamespace
@@ -11,8 +11,6 @@ namespace DefaultNamespace
             {
             }
 
-            public DbSet<User> User { get; set; }
+            public DbSet<User> Users { get; set; }
         }
-    }
-    }
 }
