@@ -1,4 +1,5 @@
 using System;
+using System.Data.SQLite;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
@@ -13,9 +14,17 @@ namespace backend
     {
         public static void Main(string[] args)
         {
+            dbService Database = new dbService();
             var host = CreateHostBuilder(args).Build();
             SeedDatabase(host);
             host.Run();
+
+            SQLiteConnection databaseConnection;
+            databaseConnection = Database.CreateConnection(); // Create Connection to Database
+
+            Database.CreateTable(databaseConnection);
+            Database.InsertData(databaseConnection);
+            Database.ReadData(databaseConnection);
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
