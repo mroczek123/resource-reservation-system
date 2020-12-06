@@ -12,5 +12,20 @@
     <Folder Include="Infrastructures" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Include="obj\backend.csproj.nuget.dgspec.json" />
+    <Content Include="obj\Debug\netcoreapp3.1\backend.AssemblyInfoInputs.cache" />
+    <Content Include="obj\Debug\netcoreapp3.1\backend.assets.cache" />
+    <Content Include="obj\Debug\netcoreapp3.1\backend.csproj.CoreCompileInputs.cache" />
+    <Content Include="obj\Debug\netcoreapp3.1\backend.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\netcoreapp3.1\backend.csprojAssemblyReference.cache" />
+    <Content Include="obj\Debug\netcoreapp3.1\backend.MvcApplicationPartsAssemblyInfo.cache" />
+    <Content Include="obj\Debug\netcoreapp3.1\project.razor.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="obj\Debug\netcoreapp3.1\.NETCoreApp,Version=v3.1.AssemblyAttributes.cs" />
+  </ItemGroup>
+
 
 </Project>
