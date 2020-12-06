@@ -1,21 +1,20 @@
+using System;
+using System.Linq;
+using DefaultNamespace;
+using entity.order;
+
 namespace Api.data
 {
     public static class SeedData
     {
-        public static void Initialize(ContosoPetsContext context)
+        public static void Initialize(ContosoUserContext context)
         {
-            if (!context.Products.Any())
+            if (!context.Users.Any())
             {
-                context.Products.AddRange(
-                    new Product
+                context.Users.AddRange(
+                    new User
                     {
-                        Name = "Squeaky Bone",
-                        Price = 20.99m,
-                    },
-                    new Product
-                    {
-                        Name = "Knotted Rope",
-                        Price = 12.99m,
+                        ID = Int64.MaxValue
                     }
                 );
 

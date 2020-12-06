@@ -2,6 +2,9 @@ using System;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using System;
+using Api.data;
+using DefaultNamespace;
 using Microsoft.Extensions.DependencyInjection;
 
 
@@ -25,7 +28,7 @@ namespace backend
         {
             var scopeFactory = host.Services.GetRequiredService<IServiceScopeFactory>();
             using var scope = scopeFactory.CreateScope();
-            var context = scope.ServiceProvider.GetRequiredService<ContosoPetsContext>();
+            var context = scope.ServiceProvider.GetRequiredService<ContosoUserContext>();
 
             if (context.Database.EnsureCreated())
             {
