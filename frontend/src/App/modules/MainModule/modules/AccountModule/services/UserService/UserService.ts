@@ -1,4 +1,4 @@
-class UserService {
+export class UserService {
 
   static async logIn(data: {email: string, password: string}): Promise<unknown> {
     return true;
@@ -10,5 +10,3 @@ class UserService {
     return true;
   }
 }
-
-export default UserService;

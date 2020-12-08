@@ -1,7 +1,7 @@
 import { connect } from "@src/App/shared/modules/Store/Store";
 import * as React from "react";
 
-function Analytics() {
+function _Analytics(): JSX.Element {
   return (
     <div style={{ height: "100vh" }}>
       <h1>Analytics</h1>
@@ -9,4 +9,4 @@ function Analytics() {
   );
 }
 
-export default connect(Analytics);
+export const Analytics = connect(_Analytics);

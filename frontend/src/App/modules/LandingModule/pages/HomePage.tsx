@@ -1,14 +1,14 @@
-import Parallax from "@src/App/shared/modules/Materialize/components/Parallax";
+import { Parallax } from "@src/App/shared/modules/Materialize/components/Parallax";
 import * as React from "react";
 
-function HomePage(): JSX.Element {
+export function HomePage(): JSX.Element {
   return (
     <>
       <Parallax>
         <img src="static/img/restaurant1.jpg"></img>
       </Parallax>
       <div>
-        <div className="container" style={{minHeight: "500px"}}>
+        <div className="container" style={{ minHeight: "500px" }}>
           Najnowocześniejszy system do zarządzania restauracją
         </div>
       </div>
@@ -18,5 +18,3 @@ function HomePage(): JSX.Element {
     </>
   );
 }
-
-export default HomePage;

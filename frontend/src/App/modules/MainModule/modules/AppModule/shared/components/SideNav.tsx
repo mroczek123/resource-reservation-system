@@ -1,8 +1,8 @@
-import StyleProps from "@src/App/shared/types/StyleProps";
 import * as React from "react";
+import { StyleProps } from "@src/App/shared/types/StyleProps";
 import { NavLink, useRouteMatch } from "react-router-dom";
 
-function SideNav(props: StyleProps): JSX.Element {
+export function SideNav(props: StyleProps): JSX.Element {
   const match = useRouteMatch();
   const menuItems = [
     {
@@ -60,5 +60,3 @@ function SideNav(props: StyleProps): JSX.Element {
     </ul>
   );
 }
-
-export default SideNav;

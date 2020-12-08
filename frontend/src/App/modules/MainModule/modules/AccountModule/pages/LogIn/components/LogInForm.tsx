@@ -1,8 +1,8 @@
 import * as React from "react";
-import UserService from "@src/App/modules/MainModule/modules/AccountModule/services/UserService/UserService";
+import { UserService } from "@src/App/modules/MainModule/modules/AccountModule/services/UserService/UserService";
 
 
-function LogInForm(props: {successCallback: () => void}):JSX.Element {
+export function LogInForm(props: {successCallback: () => void}):JSX.Element {
   const emailFieldRef: React.Ref<HTMLInputElement> = React.createRef();
   const passwordFieldRef: React.Ref<HTMLInputElement> = React.createRef();
   const handleSubmit = () => {
@@ -29,5 +29,3 @@ function LogInForm(props: {successCallback: () => void}):JSX.Element {
     </form>
   );
 }
-
-export default LogInForm;

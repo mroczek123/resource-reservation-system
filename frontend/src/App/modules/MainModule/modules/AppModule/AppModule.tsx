@@ -1,20 +1,20 @@
 import { Route, Switch, useRouteMatch } from "react-router-dom";
 import * as React from "react";
-import Dashboard from "./pages/Dashboard/Dashboard";
-import SideNav from "./shared/components/SideNav";
-import Bills from "./pages/Bills/Bills";
-import Settings from "./pages/Settings/Settings";
-import Products from "./pages/Products/Products";
-import Employees from "./pages/Employees/Employees";
-import Analytics from "./pages/Analytics/Analytics";
+import { Dashboard } from "./pages/Dashboard/Dashboard";
+import { SideNav } from "./shared/components/SideNav";
+import { Bills } from "./pages/Bills/Bills";
+import { Settings } from "./pages/Settings/Settings";
+import { Products } from "./pages/Products/Products";
+import { Employees } from "./pages/Employees/Employees";
+import { Analytics } from "./pages/Analytics/Analytics";
 
-function AppModule(): JSX.Element {
+export function AppModule(): JSX.Element {
   return (
     <>
-      <div style={{  width: "100vw" }}>
-        <div style={{display: "grid"}}>
+      <div style={{ width: "100vw" }}>
+        <div style={{ display: "grid" }}>
           <SideNav style={{ gridColumnStart: 1, gridColumnEnd: 2 }} />
-          <div style={{ gridColumnStart: 2, gridColumnEnd: 20, paddingLeft: "60px"}}>
+          <div style={{ gridColumnStart: 2, gridColumnEnd: 20 }}>
             <Router />
           </div>
         </div>
@@ -48,5 +48,3 @@ function Router() {
     </Switch>
   );
 }
-
-export default AppModule;

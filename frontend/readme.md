@@ -1,5 +1,6 @@
 # 🔥🔥🔥🔥🔥🔥Frontend🔥🔥🔥🔥🔥🔥
 ## stawianie projektu
+0. `npm install yarn`
 1. `yarn`
 2. Tyle 🦄
 

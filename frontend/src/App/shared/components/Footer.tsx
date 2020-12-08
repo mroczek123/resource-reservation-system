@@ -1,8 +1,6 @@
 import * as React from "react";
-import { connect } from "../modules/Store/Store";
-import StateProps from "../modules/Store/types/StateProps";
 
-function Footer(props: StateProps) {
+export function Footer(): JSX.Element {
   return (
     <footer className={`page-footer`} style={{ minHeight: "100px" }}>
       <div className="container">
@@ -15,5 +13,3 @@ function Footer(props: StateProps) {
     </footer>
   );
 }
-
-export default connect(Footer);

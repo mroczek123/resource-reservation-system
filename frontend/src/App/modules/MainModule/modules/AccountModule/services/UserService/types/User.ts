@@ -1,10 +1,10 @@
-enum UserRole {
+export enum UserRole {
   WAITER,
   CLIENT,
   RESTAURATOR
 }
 
-class User {
+export class User {
   firstName: string;
   lastName: string;
   email: string;
@@ -21,5 +21,3 @@ class User {
     this.role = data.role;
   }
 }
-
-export default User;

@@ -1,4 +1,4 @@
-import StyleProps from "@src/App/shared/types/StyleProps";
+import { StyleProps } from "@src/App/shared/types/StyleProps";
 import * as React from "react";
 
 function Spinner(props: StyleProps) {

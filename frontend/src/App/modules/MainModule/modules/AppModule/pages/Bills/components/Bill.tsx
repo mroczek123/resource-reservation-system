@@ -1,11 +1,9 @@
 import * as React from "react";
 
-function Bill(props) {
+export function Bill(props: unknown) {
   return (
     <div>
       billy bill
     </div>
   )
 }
-
-export default Bill

@@ -1,20 +1,21 @@
 import * as React from "react";
-import { Provider } from "react-redux";
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
-import Store from "@src/App/shared/modules/Store/Store";
-import LandingModule from "./modules/LandingModule/LandingModule";
-import MainModule from "./modules/MainModule/MainModule";
-import Page404 from "./pages/ErrorPages/Page404";
-import Footer from "./shared/components/Footer";
+import { connect } from "@src/App/shared/modules/Store/Store";
+import { LandingModule } from "./modules/LandingModule/LandingModule";
+import { MainModule } from "./modules/MainModule/MainModule";
+import { Page404 } from "./pages/ErrorPages/Page404";
+import { Footer } from "./shared/components/Footer";
+import { StateProps } from "./shared/modules/Store/types/StateProps";
 
-function App(): JSX.Element {
+function _App(props: StateProps): JSX.Element {
   return (
-    <Provider store={Store}>
+    <>
+      {props.state.modals?.current}
       <BrowserRouter>
         {Router}
         <Footer />
       </BrowserRouter>
-    </Provider>
+    </>
   );
 }
 
@@ -37,4 +38,5 @@ const Router = (
     </Route>
   </Switch>
 );
-export default App;
+
+export const App = connect(_App);

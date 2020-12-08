@@ -1,12 +1,11 @@
-import { Route, Switch, useRouteMatch } from "react-router-dom";
 import * as React from "react";
-import AccountModule from "./modules/AccountModule/AccountModule";
-import AppModule from "./modules/AppModule/AppModule";
 
-function MainModule(): JSX.Element {
-  return (
-      <Router />
-  );
+import { Route, Switch, useRouteMatch } from "react-router-dom";
+import { AccountModule } from "./modules/AccountModule/AccountModule";
+import { AppModule } from "./modules/AppModule/AppModule";
+
+export function MainModule(): JSX.Element {
+  return <Router />;
 }
 
 function Router() {
@@ -22,5 +21,3 @@ function Router() {
     </Switch>
   );
 }
-
-export default MainModule;

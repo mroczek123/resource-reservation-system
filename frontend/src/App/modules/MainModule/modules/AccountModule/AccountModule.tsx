@@ -1,8 +1,9 @@
-import { Route, Switch, useRouteMatch } from "react-router-dom";
 import * as React from "react";
-import LogIn from "./pages/LogIn/LogIn";
 
-function AccountModule(): JSX.Element {
+import { Route, Switch, useRouteMatch } from "react-router-dom";
+import { LogIn } from "./pages/LogIn/LogIn";
+
+export function AccountModule(): JSX.Element {
   return (
     <>
       <Router />
@@ -20,5 +21,3 @@ function Router() {
     </Switch>
   );
 }
-
-export default AccountModule;

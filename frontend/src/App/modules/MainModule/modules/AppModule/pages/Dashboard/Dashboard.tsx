@@ -1,9 +1,9 @@
 import { connect } from "@src/App/shared/modules/Store/Store";
-import StateProps from "@src/App/shared/modules/Store/types/StateProps";
+import { StateProps } from "@src/App/shared/modules/Store/types/StateProps";
 import * as React from "react";
 import { Doughnut } from "react-chartjs-2";
 
-function Dashboard(props: StateProps): JSX.Element {
+function _Dashboard(props: StateProps): JSX.Element {
   const data = {
     labels: ["free", "taken"],
     datasets: [
@@ -24,4 +24,4 @@ function Dashboard(props: StateProps): JSX.Element {
   );
 }
 
-export default connect(Dashboard);
+export const Dashboard = connect(_Dashboard);

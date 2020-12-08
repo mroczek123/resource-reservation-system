@@ -1,19 +1,34 @@
-import { connect } from "@src/App/shared/modules/Store/Store";
+import { ProductsService } from "@src/App/shared/modules/Products/services/ProductsService";
+import { dispatch } from "@src/App/shared/modules/Store/Store";
+import { ActionType } from "@src/App/shared/modules/Store/types/ActionType";
 import * as React from "react";
-import ProductsList from "./ProductsList";
+import { PageProps, Page } from "../../shared/components/Page";
+import { ProductEditModal } from "./modals/ProductEditModal";
+import { ProductsList } from "./ProductsList";
 
-function Products() {
-  return (
-    <div style={{ height: "100vh" }}>
-      <h1>Menu</h1>
-      <a className="btn">Add to Menu</a>
-      <div className="container">
-        <div className="z-depth-2">
-          <ProductsList/>
-        </div>
-      </div>
-    </div>
-  );
+export class Products extends React.Component {
+  constructor(props: Record<string, unknown>) {
+    super(props);
+    ProductsService.getProducts();
+  }
+
+  displayAddProductModal(): void {
+    dispatch({ type: ActionType.ADD_MODAL, payload: { modal: ProductEditModal() } });
+  }
+
+  render(): JSX.Element {
+    const content: PageProps = {
+      title: "Menu",
+      buttons: (
+        <button
+          className="btn waves-effect waves-light"
+          onClick={() => this.displayAddProductModal()}
+        >
+          Add to Menu
+        </button>
+      ),
+      children: <ProductsList />,
+    };
+    return Page(content);
+  }
 }
-
-export default connect(Products);

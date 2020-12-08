@@ -1,6 +1,6 @@
 import * as React from "react";
 
-function AboutUs(props: unknown): JSX.Element {
+export function AboutUs(props: unknown): JSX.Element {
   const authors = [
     {
       name: "Patryk Kirszenstein",
@@ -31,7 +31,7 @@ function AboutUs(props: unknown): JSX.Element {
         <div className="row">
           {authors.map((author) => (
             <div className="col m12 l4">
-              <div className="card z-depth-2 hoverable" style={{ height: "600px" }}>
+              <div className="z-depth-2 hoverable" style={{ height: "600px" }}>
                 <div style={{padding: "50px"}}>
                   <img
                     src={author.imgSrc}
@@ -53,4 +53,3 @@ function AboutUs(props: unknown): JSX.Element {
   );
 }
 
-export default AboutUs;

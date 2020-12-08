@@ -1,2 +1,1 @@
-type ChildrenProps = {children: React.ReactNode};
-export default ChildrenProps;
+export type ChildrenProps = {children: React.ReactNode};

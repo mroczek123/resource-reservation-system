@@ -1,2 +1,1 @@
-type ParentRouteProp = {parentRoute: string};
-export default ParentRouteProp;
+export type ParentRouteProp = {parentRoute: string};

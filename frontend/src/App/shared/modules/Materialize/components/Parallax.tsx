@@ -1,8 +1,8 @@
 import * as React from "react";
 import * as M from "materialize-css";
 
-class Parallax extends React.Component {
-  parallaxElementRef: React.RefObject<any>;
+export class Parallax extends React.Component {
+  parallaxElementRef: React.RefObject<HTMLDivElement>;
 
   constructor(props: any) {
     super(props);
@@ -10,7 +10,9 @@ class Parallax extends React.Component {
   }
 
   componentDidMount(): void {
-    M.Parallax.init(this.parallaxElementRef.current);
+    if (this.parallaxElementRef.current) {
+      M.Parallax.init(this.parallaxElementRef.current);
+    }
   }
 
   render(): JSX.Element {
@@ -23,5 +25,3 @@ class Parallax extends React.Component {
   )
   }
 }
-
-export default Parallax;

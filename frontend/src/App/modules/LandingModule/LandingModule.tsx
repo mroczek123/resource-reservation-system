@@ -1,13 +1,12 @@
-import Chat from "@src/App/shared/components/Chat";
-import NavBar from "@src/App/shared/modules/Materialize/components/NavBar";
 import * as React from "react";
 import { Link, Route, Switch, useRouteMatch } from "react-router-dom";
 
-import AboutUs from "./pages/AboutUs";
-import HomePage from "./pages/HomePage";
+import { Chat } from "@src/App/shared/components/Chat";
+import { NavBar } from "@src/App/shared/modules/Materialize/components/NavBar";
+import { AboutUs } from "./pages/AboutUs";
+import { HomePage } from "./pages/HomePage";
 
-
-function LandingModule(props: unknown): JSX.Element {
+export function LandingModule(props: unknown): JSX.Element {
   const routeMatch = useRouteMatch();
   return (
     <>
@@ -42,5 +41,3 @@ const Router = (props: { parentRoute: string }) => (
     </Route>
   </Switch>
 );
-
-export default LandingModule;

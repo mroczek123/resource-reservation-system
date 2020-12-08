@@ -1,4 +1,4 @@
-import { StoreState } from "./State";
+import { StoreState } from "./StoreState";
 
-type StateProps = {state: StoreState};
-export default StateProps;
+export type StateProps = {state: StoreState};
+

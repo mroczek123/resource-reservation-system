@@ -1,20 +1,22 @@
+import { Product } from "@src/App/shared/modules/Products/models/Product";
 import * as React from "react";
 
-
-function ProductItem(): JSX.Element {
+export function ProductItem(props: {
+  product: Product;
+  editCallback: any;
+  removeCallback: any;
+}): JSX.Element {
   return (
     <li className="collection-item right-align">
       <span className="left" style={{ marginTop: "6px" }}>
-        Produkt 1
+        {props.product.name} {props.product.price}
       </span>
-      <a href="#!" className=" btn red " style={{marginRight: "10px"}}>
+      <button onClick={props.editCallback} className=" btn blue " style={{ marginRight: "10px" }}>
         Modify
-      </a>
+      </button>
       <a href="#!" className=" btn red ">
         Delete
       </a>
     </li>
   );
 }
-
-export default ProductItem;
