@@ -1,18 +1,11 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Data.SQLite;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using System;
 using Api.data;
 using DefaultNamespace;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 
 
 namespace backend
@@ -21,9 +14,17 @@ namespace backend
     {
         public static void Main(string[] args)
         {
+            dbService Database = new dbService();
             var host = CreateHostBuilder(args).Build();
             SeedDatabase(host);
             host.Run();
+
+            SQLiteConnection databaseConnection;
+            databaseConnection = Database.CreateConnection(); // Create Connection to Database
+
+            Database.CreateTable(databaseConnection);
+            Database.InsertData(databaseConnection);
+            Database.ReadData(databaseConnection);
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
