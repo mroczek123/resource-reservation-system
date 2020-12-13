@@ -1,11 +1,12 @@
 using System;
-using System.Data.SQLite;
+//using System.Data.SQLite;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Api.data;
-using DefaultNamespace;
+using Api.model;
 using Microsoft.Extensions.DependencyInjection;
+using System.Threading.Tasks;
 
 
 namespace backend
@@ -14,16 +15,13 @@ namespace backend
     {
         public static void Main(string[] args)
         {
-            
-            
-            
-            DbService Database = new DbService();
-            SQLiteConnection databaseConnection;
-            databaseConnection = Database.CreateConnection(); // Create Connection to Database
 
-            Database.CreateTable(databaseConnection);
-            Database.InsertData(databaseConnection);
-            Database.ReadData(databaseConnection);
+            var host = CreateHostBuilder(args).Build();
+            host.Run();
         }
+
+        public static IHostBuilder CreateHostBuilder(string[] args) =>
+            Host.CreateDefaultBuilder(args)
+                .ConfigureWebHostDefaults(webBuilder => { webBuilder.UseStartup<Startup>(); });
     }
 }
