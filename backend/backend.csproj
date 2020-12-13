@@ -1,31 +1,16 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.0" />
-    <PackageReference Include="System.Data.SQLite.Core" Version="1.0.113.6" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
   </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Infrastructures" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="obj\backend.csproj.nuget.dgspec.json" />
-    <Content Include="obj\Debug\net5.0\backend.AssemblyInfoInputs.cache" />
-    <Content Include="obj\Debug\net5.0\backend.assets.cache" />
-    <Content Include="obj\Debug\net5.0\backend.csproj.CoreCompileInputs.cache" />
-    <Content Include="obj\Debug\net5.0\backend.csproj.FileListAbsolute.txt" />
-    <Content Include="obj\Debug\net5.0\backend.csprojAssemblyReference.cache" />
-    <Content Include="obj\Debug\net5.0\backend.MvcApplicationPartsAssemblyInfo.cache" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Include="obj\Debug\net5.0\.NETCoreApp,Version=v5.0.AssemblyAttributes.cs" />
-  </ItemGroup>
-
-
 </Project>

@@ -2,15 +2,16 @@ using Microsoft.EntityFrameworkCore;
 using entity.order;
 
 
-namespace DefaultNamespace
+namespace Api.model
 { 
-    public class ContosoUserContext : DbContext
+    public class UserContext : DbContext
         {
-            public ContosoUserContext(DbContextOptions<ContosoUserContext> options)
+            public UserContext(DbContextOptions<UserContext> options)
                 : base(options)
             {
             }
 
             public DbSet<User> Users { get; set; }
+            //public DbSet<Logged> Logg { get; set; }
         }
 }
