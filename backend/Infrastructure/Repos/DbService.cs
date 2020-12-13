@@ -4,7 +4,7 @@ using System.Data.SQLite;
 
 namespace backend
 {
-    public class dbService
+    public class DbService
     {
         // Creating Connection to Database
         public SQLiteConnection CreateConnection()
