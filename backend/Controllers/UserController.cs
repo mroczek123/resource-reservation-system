@@ -27,7 +27,7 @@ namespace backend.Controllers
         }
 
         [HttpGet("Logged")]
-        public object Logged()
+        public object ShowLogged()
         {
             return userContext.Set<Logged>().ToList();
         }

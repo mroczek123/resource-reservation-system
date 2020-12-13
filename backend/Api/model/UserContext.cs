@@ -12,6 +12,6 @@ namespace Api.model
             }
 
             public DbSet<User> Users { get; set; }
-            //public DbSet<Logged> Logg { get; set; }
+            public DbSet<Logged> Logging { get; set; }
         }
 }
