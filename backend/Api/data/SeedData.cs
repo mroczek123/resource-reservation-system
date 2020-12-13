@@ -1,20 +1,20 @@
 using System;
 using System.Linq;
-using DefaultNamespace;
+using Api.model;
 using entity.order;
 
 namespace Api.data
 {
     public static class SeedData
     {
-        public static void Initialize(ContosoUserContext context)
+        public static void Initialize(UserContext context)
         {
             if (!context.Users.Any())
             {
                 context.Users.AddRange(
                     new User
                     {
-                        ID = Int64.MaxValue
+                        ID = 1
                     }
                 );
 
