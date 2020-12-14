@@ -18,6 +18,15 @@ namespace Api.data
                     }
                 );
 
+                context.Logging.AddRange(
+                    new Logged
+                    {
+                        LoggedID = 1,
+                        Name = "Darek",
+                        Rights = (Logged.Right)3,
+                        Password = Logged.PasswordCrypt("xyz")
+                    }
+                );
                 context.SaveChanges();
             }
         }
