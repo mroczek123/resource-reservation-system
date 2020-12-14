@@ -15,7 +15,9 @@ namespace backend
     {
         public static void Main(string[] args)
         {
+            dbService Database = new dbService();
             var host = CreateHostBuilder(args).Build();
+            SeedDatabase(host);
             host.Run();
         }
 
