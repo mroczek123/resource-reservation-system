@@ -3,8 +3,11 @@ import { connect, dispatch } from "@src/App/shared/modules/Store/Store";
 import { ActionType } from "@src/App/shared/modules/Store/types/ActionType";
 import { StateProps } from "@src/App/shared/modules/Store/types/StateProps";
 import { StoreState } from "@src/App/shared/modules/Store/types/StoreState";
+import { ModalService } from "@src/App/shared/services/ModalService";
+import { Modal } from "materialize-css";
 import * as React from "react";
 import { ProductEditModal } from "./modals/ProductEditModal";
+import { ProductRemoveModal } from "./modals/ProductRemoveModal";
 import { ProductItem } from "./ProductItem";
 
 class _ProductsList extends React.Component {
@@ -14,13 +17,6 @@ class _ProductsList extends React.Component {
     super(props);
     this.storeState = props.state;
   }
-  displayEditModal(product: Product) {
-    dispatch({ type: ActionType.ADD_MODAL, payload: { modal: ProductEditModal({ product }) } });
-  }
-
-  deleteProductModal(product: Product) {
-    //dispatch({ type: ActionType.ADD_MODAL, payload: { modal: ProductEditModal({product}) } });
-  }
 
   render() {
     return (
@@ -29,8 +25,8 @@ class _ProductsList extends React.Component {
           return (
             <ProductItem
               product={product}
-              editCallback={() => this.displayEditModal(product)}
-              removeCallback={() => this.deleteProductModal(product)}
+              editCallback={() => ModalService.displayModal(ProductEditModal({ product }))}
+              removeCallback={() => ModalService.displayModal(ProductRemoveModal())}
             />
           );
         })}

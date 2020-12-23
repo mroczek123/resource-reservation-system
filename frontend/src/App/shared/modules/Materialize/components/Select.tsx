@@ -16,6 +16,13 @@ export class Select extends React.Component {
     }
   }
 
+  get value(): string {
+    if (this.selectRef.current) {
+      this.selectRef.current?.value
+    }
+    return ""
+  }
+
   render(): JSX.Element {
     return <select ref={this.selectRef}>{this.children}</select>;
   }

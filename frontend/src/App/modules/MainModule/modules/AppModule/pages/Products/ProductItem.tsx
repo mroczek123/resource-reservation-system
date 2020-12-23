@@ -14,9 +14,9 @@ export function ProductItem(props: {
       <button onClick={props.editCallback} className=" btn blue " style={{ marginRight: "10px" }}>
         Modify
       </button>
-      <a href="#!" className=" btn red ">
+      <button onClick={props.removeCallback} className=" btn red ">
         Delete
-      </a>
+      </button>
     </li>
   );
 }

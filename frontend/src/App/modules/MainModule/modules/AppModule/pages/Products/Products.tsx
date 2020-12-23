@@ -1,6 +1,5 @@
 import { ProductsService } from "@src/App/shared/modules/Products/services/ProductsService";
-import { dispatch } from "@src/App/shared/modules/Store/Store";
-import { ActionType } from "@src/App/shared/modules/Store/types/ActionType";
+import { ModalService } from "@src/App/shared/services/ModalService";
 import * as React from "react";
 import { PageProps, Page } from "../../shared/components/Page";
 import { ProductEditModal } from "./modals/ProductEditModal";
@@ -9,11 +8,7 @@ import { ProductsList } from "./ProductsList";
 export class Products extends React.Component {
   constructor(props: Record<string, unknown>) {
     super(props);
-    ProductsService.getProducts();
-  }
-
-  displayAddProductModal(): void {
-    dispatch({ type: ActionType.ADD_MODAL, payload: { modal: ProductEditModal() } });
+    ProductsService.getAll();
   }
 
   render(): JSX.Element {
@@ -22,7 +17,7 @@ export class Products extends React.Component {
       buttons: (
         <button
           className="btn waves-effect waves-light"
-          onClick={() => this.displayAddProductModal()}
+          onClick={() => ModalService.displayModal(ProductEditModal())}
         >
           Add to Menu
         </button>
