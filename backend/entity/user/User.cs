@@ -1,7 +1,9 @@
+using System;
+
 namespace entity.order
 {
     public class User
     {
-        public long ID { get; set; }
+        public Guid Id { get; set; }
     }
 }
