@@ -14,7 +14,7 @@ namespace Api.data
                 context.Users.AddRange(
                     new User
                     {
-                        ID = 1
+                        Id = Guid.Parse("1")
                     }
                 );
 
