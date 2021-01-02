@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
-using static entity.order.Logged;
 
 namespace backend.Migrations
 {
