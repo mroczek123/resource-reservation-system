@@ -4,7 +4,7 @@ using entity.order;
 
 namespace backend.service
 {
-    public class TableService(SQLiteConnection connection,TableRepo database)
+    public class TableService
     {
         private SQLiteConnection connection{ get; set; }
         private TableRepo database{ get; set; }

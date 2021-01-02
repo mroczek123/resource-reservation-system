@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.SQLite;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using backend.service;
 using entity.order;
 using Microsoft.AspNetCore.Mvc;
@@ -12,7 +8,7 @@ namespace backend.Controllers
 {
     [ApiController]
     [Route("[Tables]")]
-    public class TableController(TableService tableService) : ControllerBase
+    public class TableController : ControllerBase
     {
         private TableService tableService;
 
