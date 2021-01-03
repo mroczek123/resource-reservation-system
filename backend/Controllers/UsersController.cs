@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Api.model;
 using entity.order;
 
 namespace backend.Controllers
@@ -44,9 +45,9 @@ namespace backend.Controllers
         // PUT: api/Users/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutUser(Guid id, User user)
+        public async Task<IActionResult> PutUser(long id, User user)
         {
-            if (id != user.Id)
+            if (id != user.ID)
             {
                 return BadRequest();
             }
@@ -80,7 +81,7 @@ namespace backend.Controllers
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetUser", new { id = user.Id }, user);
+            return CreatedAtAction("GetUser", new { id = user.ID }, user);
         }
 
         // DELETE: api/Users/5
@@ -99,9 +100,9 @@ namespace backend.Controllers
             return NoContent();
         }
 
-        private bool UserExists(Guid id)
+        private bool UserExists(long id)
         {
-            return _context.Users.Any(e => e.Id == id);
+            return _context.Users.Any(e => e.ID == id);
         }
     }
 }
