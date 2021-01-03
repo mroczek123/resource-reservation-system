@@ -4,7 +4,7 @@ using System.Text;
 
 namespace backend.entity.product
 {
-    class ProductConfiguration
+    public class ProductConfiguration
     {
         public string ConfigName { get; set; }
         // dodac Array options

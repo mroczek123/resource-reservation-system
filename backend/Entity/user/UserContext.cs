@@ -1,6 +1,7 @@
+using entity.order;
 using Microsoft.EntityFrameworkCore;
 
-namespace entity.order
+namespace backend.entity.user
 {
     public class UserContext :DbContext
     {
@@ -19,3 +20,4 @@ namespace entity.order
         }
     }
 }
+

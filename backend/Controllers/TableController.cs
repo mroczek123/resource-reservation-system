@@ -7,7 +7,7 @@ using Microsoft.Extensions.Logging;
 namespace backend.Controllers
 {
     [ApiController]
-    [Route("[Tables]")]
+    [Route("api/[controller]")]
     public class TableController : ControllerBase
     {
         private TableService tableService;
