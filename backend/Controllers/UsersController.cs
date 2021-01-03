@@ -29,6 +29,15 @@ namespace backend.Controllers
         }
 
         // GET: api/Users/5
+        [HttpPost("/register")]
+        public async Task<ActionResult<User>> CreateUser(User user)
+        {
+            _context.Users.Add(user);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction("GetUser", new { id = user.Id }, user);
+        }
+        // GET: api/Users/5
         [HttpGet("{id}")]
         public async Task<ActionResult<User>> GetUser(long id)
         {
@@ -47,7 +56,7 @@ namespace backend.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutUser(Guid id, User user)
         {
-            if (id != user.Id)
+            if (id != user.Id.value)
             {
                 return BadRequest();
             }
@@ -102,7 +111,7 @@ namespace backend.Controllers
 
         private bool UserExists(Guid id)
         {
-            return _context.Users.Any(e => e.Id == id);
+            return _context.Users.Any(e => e.Id.value == id);
         }
     }
 }
