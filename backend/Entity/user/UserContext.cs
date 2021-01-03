@@ -11,12 +11,10 @@ namespace backend.entity.user
         }
 
         public DbSet<User> Users { get; set; }
-        public DbSet<Logged> Logged { get; set; }
-
+        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>().ToTable("User");
-            modelBuilder.Entity<Logged>().ToTable("Logged");
         }
     }
 }

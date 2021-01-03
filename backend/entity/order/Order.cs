@@ -1,15 +1,18 @@
+using backend.entity.user;
+
 namespace entity.order
 {
     public class Order
     {
-        public int ID { get; set; }
+        public int id { get; set; }
         public string Name { get; set; }
-        public Logged Client { get; set; }
+        public User Client { get; set; }
         public double Tip { get; set; }
         public double Price { get; set; }
         public Product Product { get; set; }
-        public Logged Worker { get; set; }
+        public User Worker { get; set; }
         public Table Table { get; set; }
         public enum status { }
+        
     }
 }

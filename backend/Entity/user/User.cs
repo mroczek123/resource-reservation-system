@@ -1,14 +1,20 @@
-
 using System;
-using System.ComponentModel.DataAnnotations;
 using System.Security.Cryptography;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 
-namespace entity.order
+namespace backend.entity.user
 {
-    public class Logged
+    public class User
     {
-        public Guid LoggedId { get; set; }
+        public User( string name, Right rights, string password)
+        {
+            this.Id = new Id();
+            Name = name;
+            Rights = rights;
+            Password = password;
+        }
+
+        public Id Id { get; set; }
         public string Name { get; set; }
         public Right Rights { get; set; }  // Restaurant , User, Employee , Client
         public string Password { get; set; }
