@@ -22,7 +22,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace backend
 {
-    public class Startup
+    public class Startup : IHostingStartup
     {
         public Startup(IConfiguration configuration)
         {
@@ -48,7 +48,7 @@ namespace backend
                 // PASSWORD
                 x.Password.RequireDigit = true;
                 x.Password.RequireLowercase = true;
-                x.Password.RequiredLength = 2;
+                x.Password.RequiredLength = 3;
 
                 // USERNAME
                 x.User.AllowedUserNameCharacters =
@@ -59,7 +59,10 @@ namespace backend
                 x.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(10);
                 x.Lockout.MaxFailedAccessAttempts = 5;
                 x.Lockout.AllowedForNewUsers = true;
+
             });
+
+
 
             services.ConfigureApplicationCookie(x =>
             {
@@ -92,16 +95,30 @@ namespace backend
             app.UseRouting();
 
             app.UseAuthentication();
+            
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapRazorPages();
             });
 
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             c.SwaggerEndpoint("/swagger/v1/swagger.json", "API"));
+        }
+
+        public void Configure(IWebHostBuilder builder)
+        {
+            builder.ConfigureServices((context, services) => {
+                services.AddDbContext<UserContext>(options =>
+                    options.UseSqlite(
+                        context.Configuration.GetConnectionString("backendContextConnection")));
+
+                services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)
+                    .AddEntityFrameworkStores<UserContext>();
+            });
         }
 
 

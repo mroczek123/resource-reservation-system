@@ -12,7 +12,13 @@ namespace entity.order
         public Product Product { get; set; }
         public User Worker { get; set; }
         public Table Table { get; set; }
-        public enum status { }
+        public Status status { get; set; }
+        public enum Status 
+        { 
+            Recevied = 1,
+            InProgress = 2,
+            Done = 3
+        }
         
     }
 }

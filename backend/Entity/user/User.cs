@@ -1,10 +1,11 @@
 using System;
 using System.Security.Cryptography;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
+using Microsoft.AspNetCore.Identity;
 
 namespace backend.entity.user
 {
-    public class User
+    public class User : IdentityUser
     {
         public User( string name, Right rights, string password)
         {

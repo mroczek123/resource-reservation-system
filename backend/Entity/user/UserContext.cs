@@ -1,9 +1,10 @@
 using entity.order;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace backend.entity.user
 {
-    public class UserContext :DbContext
+    public class UserContext : IdentityDbContext<User>
     {
         public UserContext (DbContextOptions<UserContext> options)
             : base(options)

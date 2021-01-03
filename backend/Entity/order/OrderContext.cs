@@ -13,7 +13,6 @@ namespace backend.entity.order
 
         public DbSet<Order> OrderSet { get; set; }
 
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Order>().ToTable("Order");
