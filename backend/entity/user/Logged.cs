@@ -8,7 +8,7 @@ namespace entity.order
 {
     public class Logged
     {
-        public long LoggedID { get; set; }
+        public Guid LoggedId { get; set; }
         public string Name { get; set; }
         public Right Rights { get; set; }  // Restaurant , User, Employee , Client
         public string Password { get; set; }

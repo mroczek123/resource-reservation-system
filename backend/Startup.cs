@@ -3,7 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Api.data;
-using Api.model;
+using backend.entity.order;
+using backend.entity.product;
+using backend.entity.table;
+using backend.entity.user;
+using entity.order;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -13,6 +17,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace backend
 {
@@ -28,7 +33,11 @@ namespace backend
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddRazorPages();
             services.AddDbContext<UserContext>(x => x.UseSqlite("Data Source=database.db"));
+            services.AddDbContext<TableContext>(x => x.UseSqlite("Data Source=database.db"));
+            services.AddDbContext<ProductContext>(x => x.UseSqlite("Data Source=database.db"));
+            services.AddDbContext<OrderContext>(x => x.UseSqlite("Data Source=database.db"));
             services.AddControllers();
             services.AddSwaggerGen();
         }

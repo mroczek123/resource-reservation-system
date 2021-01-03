@@ -1,6 +1,6 @@
 using System;
 using System.Linq;
-using Api.model;
+using backend.entity.user;
 using entity.order;
 
 namespace Api.data
@@ -14,14 +14,14 @@ namespace Api.data
                 context.Users.AddRange(
                     new User
                     {
-                        ID = 1
+                        Id = Guid.Parse("1")
                     }
                 );
 
-                context.Logging.AddRange(
+                context.Logged.AddRange(
                     new Logged
                     {
-                        LoggedID = 1,
+                        LoggedId = Guid.Parse("1"),
                         Name = "Darek",
                         Rights = (Logged.Right)3,
                         Password = Logged.PasswordCrypt("xyz")
