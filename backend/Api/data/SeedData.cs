@@ -1,6 +1,6 @@
 using System;
 using System.Linq;
-
+using Api.model;
 using entity.order;
 
 namespace Api.data
@@ -18,7 +18,7 @@ namespace Api.data
                     }
                 );
 
-                context.Logged.AddRange(
+                context.Logging.AddRange(
                     new Logged
                     {
                         LoggedID = 1,
