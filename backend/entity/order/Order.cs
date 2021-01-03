@@ -1,8 +1,10 @@
+using System;
+
 namespace entity.order
 {
     public class Order
     {
-        public int ID { get; set; }
+        public Guid Id { get; set; }
         public string Name { get; set; }
         public Logged Client { get; set; }
         public double Tip { get; set; }

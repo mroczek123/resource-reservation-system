@@ -14,19 +14,19 @@ namespace Api.data
                 context.Users.AddRange(
                     new User
                     {
-                        Id = Guid.Parse("1")
+                        Id = Guid.NewGuid()
                     }
-                );
+                ); ;
 
                 context.Logged.AddRange(
                     new Logged
                     {
-                        LoggedId = Guid.Parse("1"),
+                        LoggedId = Guid.NewGuid()
                         Name = "Darek",
                         Rights = (Logged.Right)3,
                         Password = Logged.PasswordCrypt("xyz")
                     }
-                );
+                ); ;
                 context.SaveChanges();
             }
         }
