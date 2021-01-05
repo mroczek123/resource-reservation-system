@@ -14,7 +14,10 @@ namespace backend.entity.user
         
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>().ToTable("User");
+            modelBuilder.Entity<User>()
+                .ToTable("User")
+                .HasKey(x => x.Id);
+                  
         }
     }
 }

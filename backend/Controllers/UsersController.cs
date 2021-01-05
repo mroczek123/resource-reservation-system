@@ -28,7 +28,7 @@ namespace backend.Controllers
             return await _context.Users.ToListAsync();
         }
 
-        // GET: api/Users/5
+        // POST: api/Users/5
         [HttpPost("/register")]
         public async Task<ActionResult<User>> CreateUser(User user)
         {
@@ -37,9 +37,19 @@ namespace backend.Controllers
 
             return CreatedAtAction("GetUser", new { id = user.Id }, user);
         }
+
+        // POST: api/Users/5
+       // [HttpPost("/login")]
+       // public async Task<ActionResult<User>> LogUser(Logged logged, User user) // Add Logged ENTITY
+       // {
+       //     _context.Logged.Add(user);
+       //     await _context.SaveChangesAsync();
+
+       //     return CreatedAtAction("LogUser", new { id = user.Id }, user);
+       // }
         // GET: api/Users/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<User>> GetUser(long id)
+        public async Task<ActionResult<User>> GetUser(Guid id)
         {
             var user = await _context.Users.FindAsync(id);
 
@@ -56,7 +66,7 @@ namespace backend.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutUser(Guid id, User user)
         {
-            if (id != user.Id.value)
+            if (id != user.Id)
             {
                 return BadRequest();
             }
@@ -95,7 +105,7 @@ namespace backend.Controllers
 
         // DELETE: api/Users/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteUser(long id)
+        public async Task<IActionResult> DeleteUser(Guid id)
         {
             var user = await _context.Users.FindAsync(id);
             if (user == null)
@@ -111,7 +121,7 @@ namespace backend.Controllers
 
         private bool UserExists(Guid id)
         {
-            return _context.Users.Any(e => e.Id.value == id);
+            return _context.Users.Any(e => e.Id == id);
         }
     }
 }

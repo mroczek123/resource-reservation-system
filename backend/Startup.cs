@@ -33,6 +33,7 @@ namespace backend
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddControllersWithViews();
             services.AddRazorPages();
             services.AddDbContext<UserContext>(x => x.UseSqlite("Data Source=database.db"));
             services.AddDbContext<TableContext>(x => x.UseSqlite("Data Source=database.db"));
@@ -58,12 +59,18 @@ namespace backend
             app.UseHttpsRedirection();
 
             app.UseRouting();
+            app.UseAuthentication();
 
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();
+            
+                endpoints.MapControllerRoute
+                (
+                name: "default",
+                pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapRazorPages();
             });
 
             app.UseSwagger();
