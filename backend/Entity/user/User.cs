@@ -8,16 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace backend.entity.user
 {
-    /*
-     * [PersonalData]  
-        [Column(TypeName="nvarchar(100)")]  
-        public string FirstName { get; set; }  
-  
-        [PersonalData]  
-        [Column(TypeName = "nvarchar(100)")]  
-        public string LirstName { get; set; }  
-     */
-    public class User : IdentityUser
+    public class User
     {
         public User(string name, Right rights, string password)
         {
@@ -28,7 +19,7 @@ namespace backend.entity.user
         }
 
         [Key]
-        [Column(TypeName="int")]
+        [Column(TypeName="TEXT")]
         public Guid Id { get; set; }
         
         [Required]
@@ -37,15 +28,14 @@ namespace backend.entity.user
         
         [Required]
         [Column(TypeName = "varchar(30)")]
-        public Right Rights { get; set; }  // Restaurant , User, Employee , Client
+        public Right Rights { get; set; }  // Restaurant, Employee , Client
         
         [Required]
-        [Column(TypeName = "nvarchar(30)")]
+        [Column(TypeName = "varchar(30)")]
         public string Password { get; set; }
 
         public enum Right
         {
-            User = 0,
             Client = 1,
             Employee = 2,
             Restaurant = 3,

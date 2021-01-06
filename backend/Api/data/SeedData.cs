@@ -12,14 +12,16 @@ namespace Api.data
         {
             if (!context.Users.Any())
             {
-                context.Users.AddRange(
+                ////////////////////////////////////////////////////////////////
+                /*context.Users.AddRange(
                     new User
                     (
                         "Darek",
                         (User.Right)3,
-                        User.PasswordCrypt("xyz")
+                        "abcdefdg"
                     )
-                );
+                );*/
+                ////////////////////////////////////////////////////////////////
                 context.SaveChanges();
             }
         }
