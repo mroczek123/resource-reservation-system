@@ -4,11 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Api.data;
-using backend.entity;
-using backend.entity.order;
-using backend.entity.product;
-using backend.entity.table;
 using backend.entity.user;
+using backend.entity.utilites;
 using entity.order;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -45,14 +42,7 @@ namespace backend
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // use sql server db in production and sqlite db in development
-            if (_env.IsProduction())
-                services.AddDbContext<DataContext>();
-            else
-                services.AddDbContext<DataContext, UserContext>();
-                services.AddDbContext<DataContext, TableContext>();
-                services.AddDbContext<DataContext, ProductContext>();
-                services.AddDbContext<DataContext, OrderContext>();
+         
 
             JwtBearerOptions options(JwtBearerOptions jwtBearerOptions, string audience) {
                 jwtBearerOptions.RequireHttpsMetadata = false;
@@ -95,10 +85,7 @@ namespace backend
             
             services.AddControllersWithViews();
             services.AddRazorPages();
-            services.AddDbContext<UserContext>(x => x.UseSqlite("Data Source=database.db"));
-            services.AddDbContext<TableContext>(x => x.UseSqlite("Data Source=database.db"));
-            services.AddDbContext<ProductContext>(x => x.UseSqlite("Data Source=database.db"));
-            services.AddDbContext<OrderContext>(x => x.UseSqlite("Data Source=database.db"));
+            services.AddDbContext<DataContext>(x => x.UseSqlite("Data Source=database.db"));
             services.AddControllers();
             services.AddSwaggerGen();
         }
@@ -112,7 +99,7 @@ namespace backend
             {
                 var serviceScopeFactory = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>();
                 using var scope = serviceScopeFactory.CreateScope();
-                var context = scope.ServiceProvider.GetService<UserContext>();
+                var context = scope.ServiceProvider.GetService<DataContext>();
                 
                 SeedData.Initialize(context);
                 app.UseDeveloperExceptionPage();

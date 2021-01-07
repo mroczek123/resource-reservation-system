@@ -5,6 +5,7 @@ using System.Linq;
 using System.Security.Claims;
 using backend.entity;
 using backend.entity.user;
+using backend.entity.utilites;
 using backend.managers;
 using entity.order;
 
@@ -12,7 +13,7 @@ namespace backend.service
 {
     public class UserService
     {
-        private UserContext _users;
+        public DataContext _users;
 
         public Token Login(Authentication authentication)
         {
