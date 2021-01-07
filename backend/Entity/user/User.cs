@@ -1,27 +1,41 @@
 using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Security.Cryptography;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 namespace backend.entity.user
 {
     public class User
     {
-        public User( string name, Right rights, string password)
+        public User(string name, Right rights, string password)
         {
-            this.Id = new Id();
+            Id = Guid.NewGuid();
             Name = name;
             Rights = rights;
             Password = password;
         }
 
-        public Id Id { get; set; }
+        [Key]
+        [Column(TypeName="TEXT")]
+        public Guid Id { get; set; }
+        
+        [Required]
+        [Column(TypeName = "varchar(30)")]
         public string Name { get; set; }
-        public Right Rights { get; set; }  // Restaurant , User, Employee , Client
+        
+        [Required]
+        [Column(TypeName = "varchar(30)")]
+        public Right Rights { get; set; }  // Restaurant, Employee , Client
+        
+        [Required]
+        [Column(TypeName = "varchar(30)")]
         public string Password { get; set; }
 
         public enum Right
         {
-            User = 0,
             Client = 1,
             Employee = 2,
             Restaurant = 3,

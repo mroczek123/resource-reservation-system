@@ -8,7 +8,9 @@ namespace entity.order
         public Status Status  { get; set; }
     }
 
-    public class Status
+    public enum Status
     {
+        Free = 1,
+        Reserved = 2
     }
 }

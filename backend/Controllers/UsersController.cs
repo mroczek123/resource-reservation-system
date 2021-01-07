@@ -28,18 +28,50 @@ namespace backend.Controllers
             return await _context.Users.ToListAsync();
         }
 
-        // GET: api/Users/5
+        // POST: api/Users/5
         [HttpPost("/register")]
         public async Task<ActionResult<User>> CreateUser(User user)
         {
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetUser", new { id = user.Id }, user);
+            return CreatedAtAction("GetUser", new { id = user.Id}, user);
         }
-        // GET: api/Users/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<User>> GetUser(long id)
+
+        // POST: api/Users/5
+        [HttpPost("/login")]
+        public async Task<ActionResult<User>> LogUser(User user) // Add Logged ENTITY
+        {
+            if (UserExists(user.Id) == false)
+            {
+                return NotFound();
+            }
+            
+            _context.Logged.Add(new LogIn(user.Id, user.Name, user.Rights));
+            await _context.SaveChangesAsync();
+            
+            return CreatedAtAction("LogUser", new { id = user.Id});
+        }
+
+        // Delete: api/Users/5
+        [HttpDelete("/logout")]
+        public async Task<ActionResult<User>> LogOutUser(User user) // Add Logged ENTITY
+        {
+            if (LoggedUserExists(user.Id) == false)
+            {
+                return NotFound();
+
+            }
+            var UserToLogOut = _context.Logged.Single(x => x.User_Id == user.Id);
+            _context.Logged.Remove(UserToLogOut);
+                
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+    // GET: api/Users/5
+    [HttpGet("{id}")]
+        public async Task<ActionResult<User>> GetUser(Guid id)
         {
             var user = await _context.Users.FindAsync(id);
 
@@ -56,7 +88,7 @@ namespace backend.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutUser(Guid id, User user)
         {
-            if (id != user.Id.value)
+            if (id != user.Id)
             {
                 return BadRequest();
             }
@@ -95,7 +127,7 @@ namespace backend.Controllers
 
         // DELETE: api/Users/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteUser(long id)
+        public async Task<IActionResult> DeleteUser(Guid id)
         {
             var user = await _context.Users.FindAsync(id);
             if (user == null)
@@ -111,7 +143,13 @@ namespace backend.Controllers
 
         private bool UserExists(Guid id)
         {
-            return _context.Users.Any(e => e.Id.value == id);
+            return _context.Users.Any(e => e.Id == id);
         }
+
+        private bool LoggedUserExists(Guid id)
+        {
+            return _context.Logged.Any(e => e.User_Id == id);
+        }
+
     }
 }
