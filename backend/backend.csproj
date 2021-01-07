@@ -22,7 +22,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="entity\utilites" />
     <Folder Include="Migrations" />
   </ItemGroup>
 
