@@ -10,7 +10,7 @@ namespace backend.entity.user
         {
         }
 
-        public DbSet<User> Users { get; set; }
+        public DbSet<User> UserSet { get; set; }
         
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

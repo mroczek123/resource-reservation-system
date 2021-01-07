@@ -1,10 +1,11 @@
+using backend;
 using backend.entity.user;
 
 namespace entity.order
 {
     public class Order
     {
-        public int id { get; set; }
+        public Id Id { get; set; }
         public string Name { get; set; }
         public User Client { get; set; }
         public double Tip { get; set; }

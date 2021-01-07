@@ -10,9 +10,9 @@ namespace Api.data
     {
         public static void Initialize(UserContext context)
         {
-            if (!context.Users.Any())
+            if (!context.UserSet.Any())
             {
-                context.Users.AddRange(
+                context.UserSet.AddRange(
                     new User
                     (
                         "Darek",

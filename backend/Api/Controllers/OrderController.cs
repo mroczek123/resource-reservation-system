@@ -3,20 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using backend.entity.user;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using entity.order;
 
-namespace backend.Controllers
+namespace backend.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UsersController : ControllerBase
+    public class OrderController : ControllerBase
     {
         private readonly UserContext _context;
 
-        public UsersController(UserContext context)
+        public OrderController(UserContext context)
         {
             _context = context;
         }
@@ -25,14 +23,14 @@ namespace backend.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<User>>> GetUsers()
         {
-            return await _context.Users.ToListAsync();
+            return await _context.UserSet.ToListAsync();
         }
 
         // GET: api/Users/5
         [HttpPost("/register")]
         public async Task<ActionResult<User>> CreateUser(User user)
         {
-            _context.Users.Add(user);
+            _context.UserSet.Add(user);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetUser", new { id = user.Id }, user);
@@ -41,7 +39,7 @@ namespace backend.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<User>> GetUser(long id)
         {
-            var user = await _context.Users.FindAsync(id);
+            var user = await _context.UserSet.FindAsync(id);
 
             if (user == null)
             {
@@ -87,7 +85,7 @@ namespace backend.Controllers
         [HttpPost]
         public async Task<ActionResult<User>> PostUser(User user)
         {
-            _context.Users.Add(user);
+            _context.UserSet.Add(user);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetUser", new { id = user.Id }, user);
@@ -97,13 +95,13 @@ namespace backend.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUser(long id)
         {
-            var user = await _context.Users.FindAsync(id);
+            var user = await _context.UserSet.FindAsync(id);
             if (user == null)
             {
                 return NotFound();
             }
 
-            _context.Users.Remove(user);
+            _context.UserSet.Remove(user);
             await _context.SaveChangesAsync();
 
             return NoContent();
@@ -111,7 +109,7 @@ namespace backend.Controllers
 
         private bool UserExists(Guid id)
         {
-            return _context.Users.Any(e => e.Id.value == id);
+            return _context.UserSet.Any(e => e.Id.value == id);
         }
     }
 }
