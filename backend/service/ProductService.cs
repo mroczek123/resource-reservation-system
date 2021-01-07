@@ -1,15 +1,17 @@
 using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
+using backend.entity.product;
+using backend.entity.utilites;
 using entity.order;
 
 namespace backend.service
 {
-    public class TableService
+    public class ProductService
     {
-        private SQLiteConnection connection { get; set; }
+        private DataContext context;
 
-        public IEnumerable<Table> GetAllTablesGetTable()
+        public IEnumerable<Product> GetAllProducts()
         {
             throw new NotImplementedException();
         }

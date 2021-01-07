@@ -1,27 +1,25 @@
 using System;
 using System.Linq;
-using backend;
 using backend.entity.user;
+using backend.entity.utilites;
 using entity.order;
 
 namespace Api.data
 {
     public static class SeedData
     {
-        public static void Initialize(UserContext context)
+        public static void Initialize(DataContext context)
         {
-            if (!context.Users.Any())
+            if (!context.UserSet.Any())
             {
-                ////////////////////////////////////////////////////////////////
-                /*context.Users.AddRange(
+                context.UserSet.AddRange(
                     new User
                     (
                         "Darek",
                         (User.Right)3,
-                        "abcdefdg"
+                        User.PasswordCrypt("xyz")
                     )
-                );*/
-                ////////////////////////////////////////////////////////////////
+                );
                 context.SaveChanges();
             }
         }
