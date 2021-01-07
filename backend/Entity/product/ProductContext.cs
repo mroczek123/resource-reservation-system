@@ -1,11 +1,12 @@
 using entity.order;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace backend.entity.product
 {
-    public class ProductContext :DbContext
+    public class ProductContext : DataContext
     {
-        public ProductContext (DbContextOptions<ProductContext> options)
+        public ProductContext (IConfiguration options)
             : base(options)
         {
         }

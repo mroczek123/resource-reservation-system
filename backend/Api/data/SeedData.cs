@@ -1,6 +1,5 @@
 using System;
 using System.Linq;
-using backend;
 using backend.entity.user;
 using entity.order;
 
@@ -10,18 +9,16 @@ namespace Api.data
     {
         public static void Initialize(UserContext context)
         {
-            if (!context.Users.Any())
+            if (!context.UserSet.Any())
             {
-                ////////////////////////////////////////////////////////////////
-                /*context.Users.AddRange(
+                context.UserSet.AddRange(
                     new User
                     (
                         "Darek",
                         (User.Right)3,
-                        "abcdefdg"
+                        User.PasswordCrypt("xyz")
                     )
-                );*/
-                ////////////////////////////////////////////////////////////////
+                );
                 context.SaveChanges();
             }
         }

@@ -1,11 +1,12 @@
 using entity.order;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace backend.entity.table
 {
-    public class TableContext :DbContext
+    public class TableContext :DataContext
     {
-        public TableContext (DbContextOptions<TableContext> options)
+        public TableContext (IConfiguration options)
             : base(options)
         {
         }

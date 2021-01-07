@@ -3,20 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using backend.entity.user;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using entity.order;
 
-namespace backend.Controllers
+namespace backend.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UsersController : ControllerBase
+    public class OrderController : ControllerBase
     {
         private readonly UserContext _context;
 
-        public UsersController(UserContext context)
+        public OrderController(UserContext context)
         {
             _context = context;
         }
@@ -25,55 +23,23 @@ namespace backend.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<User>>> GetUsers()
         {
-            return await _context.Users.ToListAsync();
+            return await _context.UserSet.ToListAsync();
         }
 
-        // POST: api/Users/5
+        // GET: api/Users/5
         [HttpPost("/register")]
         public async Task<ActionResult<User>> CreateUser(User user)
         {
-            _context.Users.Add(user);
+            _context.UserSet.Add(user);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetUser", new { id = user.Id}, user);
+            return CreatedAtAction("GetUser", new { id = user.Id }, user);
         }
-
-        // POST: api/Users/5
-        [HttpPost("/login")]
-        public async Task<ActionResult<User>> LogUser(User user) // Add Logged ENTITY
+        // GET: api/Users/5
+        [HttpGet("{id}")]
+        public async Task<ActionResult<User>> GetUser(long id)
         {
-            if (UserExists(user.Id) == false)
-            {
-                return NotFound();
-            }
-            
-            _context.Logged.Add(new LogIn(user.Id, user.Name, user.Rights));
-            await _context.SaveChangesAsync();
-            
-            return CreatedAtAction("LogUser", new { id = user.Id});
-        }
-
-        // Delete: api/Users/5
-        [HttpDelete("/logout")]
-        public async Task<ActionResult<User>> LogOutUser(User user) // Add Logged ENTITY
-        {
-            if (LoggedUserExists(user.Id) == false)
-            {
-                return NotFound();
-
-            }
-            var UserToLogOut = _context.Logged.Single(x => x.User_Id == user.Id);
-            _context.Logged.Remove(UserToLogOut);
-                
-            await _context.SaveChangesAsync();
-
-            return NoContent();
-        }
-    // GET: api/Users/5
-    [HttpGet("{id}")]
-        public async Task<ActionResult<User>> GetUser(Guid id)
-        {
-            var user = await _context.Users.FindAsync(id);
+            var user = await _context.UserSet.FindAsync(id);
 
             if (user == null)
             {
@@ -119,7 +85,7 @@ namespace backend.Controllers
         [HttpPost]
         public async Task<ActionResult<User>> PostUser(User user)
         {
-            _context.Users.Add(user);
+            _context.UserSet.Add(user);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetUser", new { id = user.Id }, user);
@@ -127,15 +93,15 @@ namespace backend.Controllers
 
         // DELETE: api/Users/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteUser(Guid id)
+        public async Task<IActionResult> DeleteUser(long id)
         {
-            var user = await _context.Users.FindAsync(id);
+            var user = await _context.UserSet.FindAsync(id);
             if (user == null)
             {
                 return NotFound();
             }
 
-            _context.Users.Remove(user);
+            _context.UserSet.Remove(user);
             await _context.SaveChangesAsync();
 
             return NoContent();
@@ -143,13 +109,7 @@ namespace backend.Controllers
 
         private bool UserExists(Guid id)
         {
-            return _context.Users.Any(e => e.Id == id);
+            return _context.UserSet.Any(e => e.Id == id);
         }
-
-        private bool LoggedUserExists(Guid id)
-        {
-            return _context.Logged.Any(e => e.User_Id == id);
-        }
-
     }
 }

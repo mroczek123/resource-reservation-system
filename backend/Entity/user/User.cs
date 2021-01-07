@@ -1,41 +1,32 @@
 using System;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+using System.Collections.Generic;
 using System.Security.Cryptography;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 
 namespace backend.entity.user
 {
     public class User
     {
-        public User(string name, Right rights, string password)
+        public User( string userName, Right rights, string password)
         {
             Id = Guid.NewGuid();
-            Name = name;
+            UserName = userName;
             Rights = rights;
             Password = password;
         }
 
-        [Key]
-        [Column(TypeName="TEXT")]
         public Guid Id { get; set; }
-        
-        [Required]
-        [Column(TypeName = "varchar(30)")]
-        public string Name { get; set; }
-        
-        [Required]
-        [Column(TypeName = "varchar(30)")]
-        public Right Rights { get; set; }  // Restaurant, Employee , Client
-        
-        [Required]
-        [Column(TypeName = "varchar(30)")]
+        public string UserName { get; set; }
+        public Right Rights { get; set; }  // Restaurant , User, Employee , Client
         public string Password { get; set; }
-
+        
+      
+        public List<RefreshToken> RefreshTokens { get; set; }
+        
         public enum Right
         {
+            User = 0,
             Client = 1,
             Employee = 2,
             Restaurant = 3,

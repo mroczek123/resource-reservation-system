@@ -1,28 +1,24 @@
 
 using entity.order;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace backend.entity.user
 {
-    public class UserContext :DbContext
+    public class UserContext :DataContext
     {
-        public UserContext (DbContextOptions<UserContext> options)
-            :base(options)
-        {
-        }
-
-        public DbSet<User> Users { get; set; }
-        public DbSet<LogIn> Logged { get; set; }
+        public UserContext (IConfiguration  options)
+            :base(options) { }
+        public DbSet<User> UserSet { get; set; }
+        public DbSet<User> RefreashTokens { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>()
                 .ToTable("User")
                 .HasKey(x => x.Id);
-
-            modelBuilder.Entity<LogIn>()
-                .ToTable("LogIn")
-                .HasKey(x => x.User_Id);
-                  
+            modelBuilder.Entity<RefreshToken>()
+                .ToTable("RefreshToken")
+                .HasKey(x => x.Id);
         }
     }
 }
