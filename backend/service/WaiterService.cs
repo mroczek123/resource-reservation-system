@@ -8,7 +8,7 @@ namespace backend.service
     public class WaiterService
     {
         private UserContext context;
-        private UserRepo database;
+      
         
      
     }

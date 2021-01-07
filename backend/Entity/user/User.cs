@@ -1,24 +1,29 @@
 using System;
+using System.Collections.Generic;
 using System.Security.Cryptography;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
+using Newtonsoft.Json;
 
 namespace backend.entity.user
 {
     public class User
     {
-        public User( string name, Right rights, string password)
+        public User( string userName, Right rights, string password)
         {
-            this.Id = new Id();
-            Name = name;
+            Id = Guid.NewGuid();
+            UserName = userName;
             Rights = rights;
             Password = password;
         }
 
-        public Id Id { get; set; }
-        public string Name { get; set; }
+        public Guid Id { get; set; }
+        public string UserName { get; set; }
         public Right Rights { get; set; }  // Restaurant , User, Employee , Client
         public string Password { get; set; }
-
+        
+      
+        public List<RefreshToken> RefreshTokens { get; set; }
+        
         public enum Right
         {
             User = 0,

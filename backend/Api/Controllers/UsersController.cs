@@ -1,117 +1,83 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
+using System.Text;
 using System.Threading.Tasks;
 using backend.entity.user;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using entity.order;
+using backend.entity.user;
+using backend.managers;
+using backend.service;
+using JWT.Algorithms;
+using JWT.Builder;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.Extensions.Logging;
 
 namespace backend.Controllers
 {
+    
+    
     [Route("api/[controller]")]
     [ApiController]
     public class UsersController : ControllerBase
     {
-        private readonly UserContext _context;
-
-        public UsersController(UserContext context)
+        private readonly ILogger<UsersController> _logger;
+        private readonly UserService _userService;
+        public UsersController(ILogger<UsersController> logger, UserService userService)
         {
-            _context = context;
+            _logger = logger;
+            _userService = userService;
         }
 
-        // GET: api/Users
+        
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<User>>> GetUsers()
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        public IEnumerable<User> Get()
         {
-            return await _context.UserSet.ToListAsync();
+            return _userService.GetAll();
         }
 
-        // GET: api/Users/5
-        [HttpPost("/register")]
-        public async Task<ActionResult<User>> CreateUser(User user)
+        [HttpGet("{userId}", Name = "GetOne")]
+        public User GetOne([FromRoute]Guid userId)
         {
-            _context.UserSet.Add(user);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetUser", new { id = user.Id }, user);
+            return _userService.Get(userId);
         }
-        // GET: api/Users/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<User>> GetUser(long id)
+        
+        [HttpPut("{userId}")]
+        public User UpdateOne([FromRoute]Guid userId, [FromBody]User user)
         {
-            var user = await _context.UserSet.FindAsync(id);
-
-            if (user == null)
-            {
-                return NotFound();
-            }
-
+            _userService.Update(userId, user);
             return user;
         }
 
-        // PUT: api/Users/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutUser(Guid id, User user)
+        [HttpDelete("{userId}")]
+        public IActionResult DeleteOne([FromRoute]string userId)
         {
-            if (id != user.Id.value)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(user).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!UserExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
+            _userService.Remove(userId);
             return NoContent();
         }
 
-        // POST: api/Users
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<User>> PostUser(User user)
+        // POST: api/Users/5
+        [HttpPost("/register")]
+        public async Task<ActionResult<User>> CreateUser(User user)
         {
-            _context.UserSet.Add(user);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetUser", new { id = user.Id }, user);
+            _userService.Add(user);
+            return CreatedAtAction("GetOne", new { id = user.Id}, user);
         }
+       
 
-        // DELETE: api/Users/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteUser(long id)
+        // Delete: api/Users/5
+        [HttpDelete("/logout")]
+        public async Task<ActionResult<User>> LogOutUser(User user) // Add Logged ENTITY
         {
-            var user = await _context.UserSet.FindAsync(id);
-            if (user == null)
-            {
-                return NotFound();
-            }
-
-            _context.UserSet.Remove(user);
-            await _context.SaveChangesAsync();
+           
 
             return NoContent();
-        }
-
-        private bool UserExists(Guid id)
-        {
-            return _context.UserSet.Any(e => e.Id.value == id);
         }
     }
 }

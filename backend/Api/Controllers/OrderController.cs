@@ -54,7 +54,7 @@ namespace backend.Api.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutUser(Guid id, User user)
         {
-            if (id != user.Id.value)
+            if (id != user.Id)
             {
                 return BadRequest();
             }
@@ -109,7 +109,7 @@ namespace backend.Api.Controllers
 
         private bool UserExists(Guid id)
         {
-            return _context.UserSet.Any(e => e.Id.value == id);
+            return _context.UserSet.Any(e => e.Id == id);
         }
     }
 }
