@@ -1,3 +1,5 @@
+using System;
+
 namespace entity.order
 {
     public class Table
