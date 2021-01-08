@@ -16,18 +16,25 @@ namespace backend.service
             _tables.Add(table);
         }
 
-        public void Remove(Table table)
+        public void Remove(string Id)
         {
-            _tables.Remove(table);
+            Table SelectedTable = _tables.Tables.ToList()
+                .Find(x => x.Id.Contains(Id));
         }
 
-        public void Update(int Id, Table table)
+        public void Update(Guid Id, Table table)
         {
             Table TableToEdit = _tables.Tables.ToList().Find(x => x.Id == Id);
             _tables.Remove(TableToEdit);
             _tables.Add(table);
         }
-        public IEnumerable<Table> GetAllTablesGetTable()
+
+        public Table Get(Guid Id)
+        {
+            return (Table)_tables.Tables.Select(x => x.Id == Id);
+        }
+
+        public IEnumerable<Table> GetAllTables()
         {
             return _tables.Tables;
         }
