@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
+using System.Linq;
 using backend.entity.product;
 using backend.entity.utilites;
 using entity.order;
@@ -9,11 +10,34 @@ namespace backend.service
 {
     public class ProductService
     {
-        private DataContext context;
+        private DataContext _products;
 
+        public void Add(Product product)
+        {
+            _products.Add(product);
+        }
+
+        public void Remove(Product product)
+        {
+            _products.Remove(product);
+        }
+
+        public void Update(Guid Id, Product product)
+        {
+            var _product = _products.ProductSet.ToList()
+                .Find(x => x.Id == Id);
+
+            _products.Remove(_product);
+            _products.Add(product);
+        }
+
+        public Product Get(Guid Id)
+        {
+            return (Product)_products.ProductSet.Select(x => x.Id == Id); // TEST
+        }
         public IEnumerable<Product> GetAllProducts()
         {
-            throw new NotImplementedException();
+            return _products.ProductSet;
         }
     }
 }
