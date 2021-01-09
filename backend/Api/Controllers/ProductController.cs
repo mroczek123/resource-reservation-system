@@ -36,9 +36,10 @@ namespace backend.Api.Controllers
         }
 
         [HttpDelete("{productId}")]
-        public void Delete(string productId)
+        public IActionResult Delete(string productId)
         {
-            _productService.DeleteOne(productId);
+            _productService.Remove(productId);
+            return NoContent();
         }
 
         [HttpGet("{productId}")]

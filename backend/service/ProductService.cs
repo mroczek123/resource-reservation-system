@@ -17,7 +17,7 @@ namespace backend.service
             _products.Add(product);
         }
 
-        public void DeleteOne(string Id)
+        public void Remove(string Id)
         {
             Product SelectedProduct = _products.ProductSet.ToList()
                 .Find(x => x.Id.ToString().Contains(Id));
