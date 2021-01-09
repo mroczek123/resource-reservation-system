@@ -20,6 +20,11 @@ namespace backend.service
         {
             Table SelectedTable = _tables.Tables.ToList()
                 .Find(x => x.Id.ToString().Contains(Id));
+
+            if (SelectedTable == null)
+                throw new SystemException("Table not found.");
+            else
+                _tables.Remove(SelectedTable);
         }
 
         public void Update(Guid Id, Table table)

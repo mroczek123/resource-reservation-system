@@ -81,8 +81,13 @@ namespace backend.service
 
         public void Remove(string userId)
         {
-            User SelectedProduct = _users.UserSet.ToList()
+            User SelectedUser = _users.UserSet.ToList()
                 .Find(x => x.Id.ToString().Contains(userId));
+            
+            if (SelectedUser == null)
+                throw new SystemException("User not found.");
+            else
+                _users.Remove(SelectedUser);
         }
 
         public void Add(User user)

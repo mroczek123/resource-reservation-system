@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 
 namespace backend.Api.Controllers
 {
+    [ApiController]
+    [Route("api/[controller]")]
     public class OrderController : Controller
     {
         private OrderService _orderService;
@@ -18,22 +20,29 @@ namespace backend.Api.Controllers
             _orderService = orderService;
             _logger = logger;
         }
-        
+
         [HttpPut("Status/{orderId}")]
         public Order EditStatus(Guid orderId, Order.status status, Order order)
         {
             _orderService.OrderStatus(orderId, status);
             return order;
         }
-        
-    [HttpPut("{orderId}")]
+
+        [HttpPut("{orderId}")]
         public Order Edit(Guid orderId, Order order)
         {
             _orderService.Update(orderId, order);
             return order;
         }
 
-        [HttpGet]
+        [HttpDelete("{orderId}")]
+        public IActionResult Delete(string Id)
+        {
+            _orderService.Remove(Id);
+            return NoContent();
+        }
+
+        [HttpGet("All")]
         public IEnumerable<Order> Get()
         {
             return _orderService.GetAll();
@@ -45,7 +54,7 @@ namespace backend.Api.Controllers
             return _orderService.Get(orderId);
         }
 
-        [HttpPost("/CreateOrder")]
+        [HttpPost("create/{orderId}")]
         public async Task<ActionResult<Order>> CreateOrder(Order order)
         {
             _orderService.Add(order);

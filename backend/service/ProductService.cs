@@ -21,6 +21,11 @@ namespace backend.service
         {
             Product SelectedProduct = _products.ProductSet.ToList()
                 .Find(x => x.Id.ToString().Contains(Id));
+            
+            if (SelectedProduct == null)
+                throw new SystemException("Product not found.");
+            else
+                _products.Remove(SelectedProduct);
         }
 
         public void Update(Guid Id, Product product)

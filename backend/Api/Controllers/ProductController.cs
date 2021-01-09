@@ -48,7 +48,7 @@ namespace backend.Api.Controllers
             return _productService.Get(productId);
         }
 
-        [HttpGet("/All")]
+        [HttpGet("All")]
         public IEnumerable<Product> Get()
         {
             return _productService.GetAllProducts();

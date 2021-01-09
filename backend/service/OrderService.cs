@@ -15,6 +15,16 @@ namespace backend.service
         {
             _orders.Add(order);
         }
+        public void Remove(string Id)
+        {
+            Order SelectedOrder = _orders.OrderSet.ToList()
+                .Find(x => x.Id.ToString().Contains(Id));
+
+            if (SelectedOrder == null)
+                throw new SystemException("Order not found.");
+            else   
+                _orders.Remove(SelectedOrder);
+        }
 
         public void Update(Guid Id, Order order)
         {

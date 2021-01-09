@@ -15,7 +15,7 @@ namespace backend.Controllers
         private readonly TableService _tableService;
         private readonly ILogger<TableController> _logger;
 
-        public TableController(ILogger<TableController> logger,TableService tableService)
+        public TableController(ILogger<TableController> logger, TableService tableService)
         {
             _logger = logger;
             _tableService = tableService;
@@ -27,7 +27,7 @@ namespace backend.Controllers
             return _tableService.Get(tableId);
         }
 
-        [HttpGet]
+        [HttpGet("All")]
         public IEnumerable<Table> GetAll()
         {
             return _tableService.GetAllTables();
@@ -41,12 +41,13 @@ namespace backend.Controllers
         }
 
         [HttpDelete("{tableId}")]
-        public void DeleteOne(string Id)
+        public IActionResult DeleteOne(string Id)
         {
             _tableService.Remove(Id);
+            return NoContent();
         }
 
-        [HttpPost("/create")]
+        [HttpPost("create/{tableId}")]
         public async Task<ActionResult<Table>> AddTable(Table table)
         {
             _tableService.Add(table);
