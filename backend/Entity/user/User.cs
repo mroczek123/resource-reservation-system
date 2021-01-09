@@ -18,7 +18,7 @@ namespace backend.entity.user
 
         public Guid Id { get; set; }
         public string UserName { get; set; }
-        public Right Rights { get; set; }  // Restaurant , User, Employee , Client
+        public Right Rights { get; set; }
         public string Password { get; set; }
         
       
@@ -26,10 +26,9 @@ namespace backend.entity.user
         
         public enum Right
         {
-            User = 0,
-            Client = 1,
-            Employee = 2,
-            Restaurant = 3,
+            User,
+            Client,
+            Worker
         }
 
         public static string PasswordCrypt(string Password)

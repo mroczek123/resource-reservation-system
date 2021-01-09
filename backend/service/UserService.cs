@@ -81,7 +81,8 @@ namespace backend.service
 
         public void Remove(string userId)
         {
-            throw new System.NotImplementedException();
+            User SelectedProduct = _users.UserSet.ToList()
+                .Find(x => x.Id.ToString().Contains(userId));
         }
 
         public void Add(User user)

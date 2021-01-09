@@ -17,9 +17,10 @@ namespace backend.service
             _products.Add(product);
         }
 
-        public void Remove(Product product)
+        public void DeleteOne(string Id)
         {
-            _products.Remove(product);
+            Product SelectedProduct = _products.ProductSet.ToList()
+                .Find(x => x.Id.ToString().Contains(Id));
         }
 
         public void Update(Guid Id, Product product)

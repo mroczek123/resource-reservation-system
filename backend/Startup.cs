@@ -84,7 +84,6 @@ namespace backend
             
             
             services.AddControllersWithViews();
-            services.AddRazorPages();
             services.AddDbContext<DataContext>(x => x.UseSqlite("Data Source=database.db"));
             services.AddControllers();
             services.AddSwaggerGen();
@@ -108,18 +107,12 @@ namespace backend
             app.UseHttpsRedirection();
 
             app.UseRouting();
-            app.UseAuthentication();
 
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
-            
-                endpoints.MapControllerRoute
-                (
-                name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
-                endpoints.MapRazorPages();
+                endpoints.MapControllers();
             });
 
             app.UseSwagger();

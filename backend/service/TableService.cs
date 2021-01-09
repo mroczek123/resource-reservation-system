@@ -19,7 +19,7 @@ namespace backend.service
         public void Remove(string Id)
         {
             Table SelectedTable = _tables.Tables.ToList()
-                .Find(x => x.Id.Contains(Id));
+                .Find(x => x.Id.ToString().Contains(Id));
         }
 
         public void Update(Guid Id, Table table)
