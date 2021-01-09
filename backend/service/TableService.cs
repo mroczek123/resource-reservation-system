@@ -41,7 +41,10 @@ namespace backend.service
 
         public IEnumerable<Table> GetAllTables()
         {
-            return _tables.Tables;
+            if (_tables == null)
+                throw new SystemException("There is no table to show.");
+            else
+                return _tables.Tables;
         }
     }
 }

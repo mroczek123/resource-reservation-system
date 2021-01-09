@@ -97,7 +97,7 @@ namespace backend.service
 
         public User Get(Guid userId)
         {
-          return  _users.UserSet.ToList().Find(u => u.Id == userId);
+          return _users.UserSet.ToList().Find(u => u.Id == userId);
         }
 
         public IEnumerable<User> GetAll()
