@@ -19,7 +19,12 @@ namespace backend.service
         public void Remove(string Id)
         {
             Table SelectedTable = _tables.Tables.ToList()
-                .Find(x => x.Id.Contains(Id));
+                .Find(x => x.Id.ToString().Contains(Id));
+
+            if (SelectedTable == null)
+                throw new SystemException("Table not found.");
+            else
+                _tables.Remove(SelectedTable);
         }
 
         public void Update(Guid Id, Table table)
@@ -36,7 +41,10 @@ namespace backend.service
 
         public IEnumerable<Table> GetAllTables()
         {
-            return _tables.Tables;
+            if (_tables == null)
+                throw new SystemException("There is no table to show.");
+            else
+                return _tables.Tables;
         }
     }
 }

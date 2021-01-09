@@ -81,7 +81,13 @@ namespace backend.service
 
         public void Remove(string userId)
         {
-            throw new System.NotImplementedException();
+            User SelectedUser = _users.UserSet.ToList()
+                .Find(x => x.Id.ToString().Contains(userId));
+            
+            if (SelectedUser == null)
+                throw new SystemException("User not found.");
+            else
+                _users.Remove(SelectedUser);
         }
 
         public void Add(User user)
@@ -91,7 +97,7 @@ namespace backend.service
 
         public User Get(Guid userId)
         {
-          return  _users.UserSet.ToList().Find(u => u.Id == userId);
+          return _users.UserSet.ToList().Find(u => u.Id == userId);
         }
 
         public IEnumerable<User> GetAll()

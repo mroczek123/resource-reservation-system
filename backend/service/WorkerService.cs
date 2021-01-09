@@ -7,7 +7,7 @@ using entity.order;
 
 namespace backend.service
 {
-    public class WaiterService
+    public class WorkerService
     {
         private DataContext context;
       

@@ -12,19 +12,13 @@ namespace backend.Controllers
     [Route("api/[controller]")]
     public class TableController : ControllerBase
     {
-        private TableService _tableService;
-
-        public TableController(TableService _tableService, ILogger<TableController> logger)
-        {
-            this._tableService = _tableService;
-            _logger = logger;
-        }
-
+        private readonly TableService _tableService;
         private readonly ILogger<TableController> _logger;
 
-        public TableController(ILogger<TableController> logger)
+        public TableController(ILogger<TableController> logger, TableService tableService)
         {
             _logger = logger;
+            _tableService = tableService;
         }
 
         [HttpGet("{tableId}")]
@@ -33,8 +27,8 @@ namespace backend.Controllers
             return _tableService.Get(tableId);
         }
 
-        [HttpGet]
-        public IEnumerable<Table> GetAll(Guid tableId)
+        [HttpGet("All")]
+        public IEnumerable<Table> GetAll()
         {
             return _tableService.GetAllTables();
         }
@@ -53,7 +47,7 @@ namespace backend.Controllers
             return NoContent();
         }
 
-        [HttpPost("/create")]
+        [HttpPost("create/{tableId}")]
         public async Task<ActionResult<Table>> AddTable(Table table)
         {
             _tableService.Add(table);
