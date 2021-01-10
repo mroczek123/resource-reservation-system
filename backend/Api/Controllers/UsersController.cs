@@ -36,7 +36,7 @@ namespace backend.Controllers
 
         
         [HttpGet]
-        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public IEnumerable<User> Get()
         {
             return _userService.GetAll();

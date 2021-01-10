@@ -22,6 +22,19 @@ namespace Api.data
                 );
                 context.SaveChanges();
             }
+
+            if (!context.ProductSet.Any())
+            {
+                context.ProductSet.AddRange(
+                    new Product
+                    (
+                        "Meat",
+                        10.99,
+                        "Kurczak"
+                    )
+                );
+                context.SaveChanges();
+            }
         }
     }
 }
