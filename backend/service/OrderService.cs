@@ -51,7 +51,7 @@ namespace backend.service
             return _orders.OrderSet;
         }
 
-        public void ReceiveOrder(Guid Id, Order.status status, User user, Table table)
+        public void ReceiveOrder(Guid Id, Order.status status, User user)
         {
             Order _order = _orders.OrderSet.ToList()
                 .Find(x => x.Id == Id);
@@ -67,7 +67,6 @@ namespace backend.service
                 if (status.Equals(Order.status.InProgress))
                 {
                     _order.Worker = user;
-                    _order.Table = table;
                 }
             }
         }

@@ -23,9 +23,9 @@ namespace backend.Api.Controllers
         }
 
         [HttpPut("Receiving/{orderId}")]
-        public IActionResult Receive(Guid orderId, Order.status status, User user, Table table)
+        public IActionResult Receive(Guid orderId, Order.status status, User user)
         {
-            _orderService.ReceiveOrder(orderId, status, user, table);
+            _orderService.ReceiveOrder(orderId, status, user);
             return NoContent();
         }
 

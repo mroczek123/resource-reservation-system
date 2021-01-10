@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace backend.Api.Controllers
 {
     [ApiController]
-    [Route("api/Table")]
+    [Route("api/[controller]")]
     public class GuestController : Controller
     {
         private TableService _guestService;
@@ -19,8 +19,8 @@ namespace backend.Api.Controllers
             _guestService = guestService;
         }
         
-        [HttpGet("All")]
-        public IEnumerable<Table> GetAll(Table table)
+        [HttpGet("Show/Tables")]
+        public IEnumerable<Table> GetAll()
         {
             return _guestService.GetAllTables();
         }

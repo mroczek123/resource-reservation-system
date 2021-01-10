@@ -11,6 +11,7 @@ namespace entity.order
 
         public Table(string Name, int Size)
         {
+            this.Id = Guid.NewGuid();
             this.Name = Name;
             this.Size = Size;
             this.Status = Status.Free;

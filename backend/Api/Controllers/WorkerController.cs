@@ -17,13 +17,14 @@ namespace backend.Controllers
         private OrderService _workerServiceOrder;
         private readonly ILogger<WorkerController> _logger;
 
-        public WorkerController(TableService workerService, ILogger<WorkerController> logger)
+        public WorkerController(TableService workerServiceTable, OrderService workerServiceOrder, ILogger<WorkerController> logger)
         {
-            _workerServiceTable = workerService;
+            _workerServiceTable = workerServiceTable;
+            _workerServiceOrder = workerServiceOrder;
             _logger = logger;
         }
         // TABLES
-        [HttpGet("All")]
+        [HttpGet]
         public IEnumerable<Table> GetAll()
         {
             return _workerServiceTable.GetAllTables();
@@ -45,9 +46,9 @@ namespace backend.Controllers
 
         // ORDER
         [HttpPut("Receiving/{orderId}")]
-        public IActionResult Receive(Guid orderId, Order.status status, User user, Table table)
+        public IActionResult Receive(Guid orderId, Order.status status, User user)
         {
-            _workerServiceOrder.ReceiveOrder(orderId, status, user, table);
+            _workerServiceOrder.ReceiveOrder(orderId, status, user);
             return NoContent();
         }
 
