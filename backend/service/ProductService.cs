@@ -12,6 +12,10 @@ namespace backend.service
     {
         private DataContext _products;
 
+        public ProductService(DataContext products)
+        {
+            _products = products;
+        }
         public void Add(Product product)
         {
             _products.Add(product);

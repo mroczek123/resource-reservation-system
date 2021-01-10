@@ -11,6 +11,10 @@ namespace backend.service
     {
         private DataContext _tables;
 
+        public TableService(DataContext tables)
+        {
+            _tables = tables;
+        }
         public void Add(Table table)
         {
             _tables.Add(table);
