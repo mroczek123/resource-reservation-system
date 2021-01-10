@@ -11,6 +11,10 @@ namespace backend.service
     {
         private DataContext _orders;
 
+        public OrderService(DataContext orders)
+        {
+            _orders = orders;
+        }
         public void Add(Order order)
         {
             _orders.Add(order);
