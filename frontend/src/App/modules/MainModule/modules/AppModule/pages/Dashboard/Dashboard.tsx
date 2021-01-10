@@ -10,7 +10,7 @@ function _Dashboard(props: StateProps): JSX.Element {
       {
         label: "Tables",
         data: [12, 9],
-        backgroundColor: [props.state.theme.colors.main.value, "lightgrey"]
+        backgroundColor: [props.state.settings.theme.colors.main.value, "lightgrey"]
       },
     ],
   };

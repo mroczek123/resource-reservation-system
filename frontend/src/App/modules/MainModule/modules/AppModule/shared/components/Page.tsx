@@ -2,8 +2,8 @@ import { ChildrenProps } from "@src/App/shared/types/ChildrenProps";
 import * as React from "react";
 
 export type PageProps = ChildrenProps & {
-  title: string;
-  buttons: JSX.Element;
+  title?: string;
+  buttons?: JSX.Element;
 };
 
 export function Page(props: PageProps): JSX.Element {

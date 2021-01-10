@@ -1,13 +1,18 @@
 import { Modal } from "@src/App/shared/components/Modal";
+import { ProductsService } from "@src/App/shared/modules/Products/services/ProductsService";
 import { ModalService } from "@src/App/shared/services/ModalService";
 import * as React from "react";
 
-export function ProductRemoveModal(
-  input: {
-    yesCallback?: () => void;
-    noCallback?: () => void;
-  } = {},
-): JSX.Element {
+export function ProductRemoveModal(props: { id: string }): JSX.Element {
+  const yesCallback = () => {
+    ProductsService.delete({id: props.id});
+    ModalService.removeModal();
+  };
+
+  const noCallback = () => {
+    ModalService.removeModal();
+  };
+
   return (
     <Modal>
       <div className="modal-content">
@@ -16,14 +21,11 @@ export function ProductRemoveModal(
           <button
             className="waves-effect waves-light btn green"
             style={{ marginRight: "10px" }}
-            onClick={() => (input.noCallback ? input.noCallback() : ModalService.removeModal())}
+            onClick={noCallback}
           >
             NO
           </button>
-          <button
-            className="waves-effect waves-light btn red"
-            onClick={() => (input.yesCallback ? input.yesCallback() : ModalService.removeModal())}
-          >
+          <button className="waves-effect waves-light btn red" onClick={yesCallback}>
             YES
           </button>
         </div>

@@ -7,6 +7,7 @@ import { Settings } from "./pages/Settings/Settings";
 import { Products } from "./pages/Products/Products";
 import { Employees } from "./pages/Employees/Employees";
 import { Analytics } from "./pages/Analytics/Analytics";
+import { Order } from "./pages/Order/Order";
 
 export function AppModule(): JSX.Element {
   return (
@@ -35,6 +36,9 @@ function Router() {
       </Route>
       <Route path={`${routeMatch.url}/employees`}>
         <Employees />
+      </Route>
+      <Route path={`${routeMatch.url}/order`}>
+        <Order />
       </Route>
       <Route path={`${routeMatch.url}/analytics`}>
         <Analytics />

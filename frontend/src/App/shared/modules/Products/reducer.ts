@@ -1,25 +1,76 @@
+import { Reducer } from "react";
 import { Action } from "../Store/types/Action";
 import { ActionType } from "../Store/types/ActionType";
 import { ResourceState } from "../Store/types/ResourceState";
 import { Product } from "./models/Product";
 
-export function reducer(state: ResourceState<Product>, action: Action): ResourceState<Product> {
-  const output = { ...state };
+type ProductResourceReducer = Reducer<ResourceState<Product>, Action>;
 
-  if (
-    !(action.payload?.entries instanceof Array) ||
-    !action.payload?.entries.every((entry) => entry instanceof Product)
-  ) {
-    return output;
+export function reducer(state: ResourceState<Product>, action: Action): ResourceState<Product> {
+  const actionFunctionMap = {
+    [ActionType.APPEND_PRODUCTS]: handleAppendProducts,
+    [ActionType.REFRESH_PRODUCTS]: handleRefreshProducts,
+    [ActionType.REMOVE_PRODUCTS]: handleRemoveProducts,
+    [ActionType.UPDATE_PRODUCT]: handleUpdateProduct,
+  };
+  const reducerIndex = Object.entries(actionFunctionMap).findIndex(
+    ([key]) => parseInt(key) == action.type,
+  );
+  if (reducerIndex > -1) {
+    return Object.entries(actionFunctionMap)[reducerIndex][1](state, action);
   }
-  switch (action.type) {
-    case ActionType.APPEND_PRODUCTS:
-      return {
-        ...output,
-        entries: output.entries.concat(action.payload.entries as Array<Product>),
-      };
-    case ActionType.REFRESH_PRODUCTS:
-      return { ...output, entries: action.payload.entries };
-  }
-  return output;
+  return dummyReducer(state, action);
 }
+
+const dummyReducer: ProductResourceReducer = (a) => {
+  return { ...a };
+};
+
+const handleAppendProducts: ProductResourceReducer = (
+  defaultValue: ResourceState<Product>,
+  action: Action,
+) => {
+  return {
+    ...defaultValue,
+    entries: [...defaultValue.entries, ...(action.payload.entries as Array<Product>)],
+  };
+};
+
+const handleRefreshProducts: ProductResourceReducer = (
+  defaultValue: ResourceState<Product>,
+  action: Action,
+) => {
+  return { ...defaultValue, entries: [...(action.payload.entries as Array<Product>)] };
+};
+
+const handleRemoveProducts: ProductResourceReducer = (
+  defaultValue: ResourceState<Product>,
+  action: Action,
+) => {
+  return {
+    ...defaultValue,
+    entries: [
+      ...defaultValue.entries.filter(
+        (entry) => !(action.payload.ids as Array<string>).find((id) => entry.id === id),
+      ),
+    ],
+  };
+};
+
+const handleUpdateProduct: ProductResourceReducer = (
+  defaultValue: ResourceState<Product>,
+  action: Action,
+) => {
+  const updatedProduct = action.payload.product;
+  if (!(updatedProduct instanceof Product)) {
+    return defaultValue;
+  }
+  return {
+    ...defaultValue,
+    entries: [
+      ...defaultValue.entries.map((entry) =>
+        entry.id === updatedProduct.id ? (action.payload.product as Product) : entry,
+      ),
+    ],
+  };
+};

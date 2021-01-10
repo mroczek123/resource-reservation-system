@@ -1,11 +1,12 @@
 import { connect } from "@src/App/shared/modules/Store/Store";
+import { translate } from "@src/App/shared/modules/Translation/translate";
 import * as React from "react";
+import { Page } from "../../shared/components/Page";
 
 function _Analytics(): JSX.Element {
   return (
-    <div style={{ height: "100vh" }}>
-      <h1>Analytics</h1>
-    </div>
+    <Page title={translate("Analytics")}>
+    </Page>
   );
 }
 

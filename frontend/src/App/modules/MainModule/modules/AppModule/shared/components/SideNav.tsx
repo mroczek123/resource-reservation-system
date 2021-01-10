@@ -1,42 +1,50 @@
 import * as React from "react";
 import { StyleProps } from "@src/App/shared/types/StyleProps";
 import { NavLink, useRouteMatch } from "react-router-dom";
+import { translate } from "@src/App/shared/modules/Translation/translate";
+import { StateProps } from "@src/App/shared/modules/Store/types/StateProps";
+import { connect } from "@src/App/shared/modules/Store/Store";
 
-export function SideNav(props: StyleProps): JSX.Element {
+function _SideNav(props: StyleProps & StateProps): JSX.Element {
   const match = useRouteMatch();
   const menuItems = [
     {
-      label: "Maciej Kulesza",
+      label: props.state.user?.fullName,
       icon: "account_circle",
       url: `${match.url}/dashboard`,
     },
     {
-      label: "Menu",
+      label: translate("Menu"),
       icon: "restaurant_menu",
       url: `${match.url}/products`,
     },
     {
-      label: "Employees",
+      label: translate("Order"),
+      icon: "restaurant_menu",
+      url: `${match.url}/order`,
+    },
+    {
+      label: translate("Employees"),
       icon: "group",
       url: `${match.url}/employees`,
     },
     {
-      label: "Analytics",
+      label: translate("Analytics"),
       icon: "show_chart",
       url: `${match.url}/analytics`,
     },
     {
-      label: "Bills",
+      label: translate("Bills"),
       icon: "account_balance_wallet",
       url: `${match.url}/bills`,
     },
     {
-      label: "Settings",
+      label: translate("Settings"),
       icon: "settings",
       url: `${match.url}/settings`,
     },
     {
-      label: "Logout",
+      label: translate("Logout"),
       icon: "power_settings_new",
       url: "account/log-out",
     },
@@ -60,3 +68,5 @@ export function SideNav(props: StyleProps): JSX.Element {
     </ul>
   );
 }
+
+export const SideNav = connect(_SideNav);

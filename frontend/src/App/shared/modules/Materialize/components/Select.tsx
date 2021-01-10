@@ -1,13 +1,19 @@
 import * as React from "react";
 import { FormSelect } from "materialize-css";
 
-export class Select extends React.Component {
+interface SelectProps {
+  value: string
+}
+
+export class Select extends React.Component<SelectProps> {
   selectRef: React.RefObject<HTMLSelectElement> = React.createRef();
   children: React.ReactNode;
+  _value: string;
 
-  constructor(props: React.PropsWithChildren<unknown>) {
+  constructor(props: React.PropsWithChildren<SelectProps>) {
     super(props);
     this.children = props.children;
+    this._value = props.value;
   }
 
   componentDidMount(): void {
@@ -17,13 +23,10 @@ export class Select extends React.Component {
   }
 
   get value(): string {
-    if (this.selectRef.current) {
-      this.selectRef.current?.value
-    }
-    return ""
+    return this.selectRef.current?.value || ""
   }
 
   render(): JSX.Element {
-    return <select ref={this.selectRef}>{this.children}</select>;
+    return <select ref={this.selectRef} value={this._value}>{this.children}</select>;
   }
 }

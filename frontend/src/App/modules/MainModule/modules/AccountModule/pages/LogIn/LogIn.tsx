@@ -1,3 +1,4 @@
+import { translate } from "@src/App/shared/modules/Translation/translate";
 import { ParentRouteProp } from "@src/App/shared/types/ParentRouteProp";
 
 import * as React from "react";
@@ -26,6 +27,9 @@ export function LogIn(props: ParentRouteProp): JSX.Element {
                 <LogInForm successCallback={afterLogin} />
               </div>
               <div className="col s3" />
+            </div>
+            <div className="row center-align">
+              <button className="btn">{translate("register")}</button>
             </div>
           </div>
         </div>
