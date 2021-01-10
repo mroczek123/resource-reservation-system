@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
 using System.Linq;
+using backend.entity.user;
 using backend.entity.utilites;
 using entity.order;
 
@@ -19,10 +20,10 @@ namespace backend.service
         {
             _orders.Add(order);
         }
-        public void Remove(string Id)
+        public void Remove(Guid Id)
         {
             Order SelectedOrder = _orders.OrderSet.ToList()
-                .Find(x => x.Id.ToString().Contains(Id));
+                .Find(x => x.Id == Id);
 
             if (SelectedOrder == null)
                 throw new SystemException("Order not found.");
@@ -50,7 +51,7 @@ namespace backend.service
             return _orders.OrderSet;
         }
 
-        public void OrderStatus(Guid Id, Order.status status)
+        public void ReceiveOrder(Guid Id, Order.status status, User user)
         {
             Order _order = _orders.OrderSet.ToList()
                 .Find(x => x.Id == Id);
@@ -60,6 +61,13 @@ namespace backend.service
             if (status.Equals(Order.status.Done))
             {
                 _orders.Remove(_order);
+            }
+            else
+            {
+                if (status.Equals(Order.status.InProgress))
+                {
+                    _order.Worker = user;
+                }
             }
         }
     }

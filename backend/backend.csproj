@@ -21,10 +21,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Migrations" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Compile Remove="Infrastructure\Repos\OrderRepo.cs" />
     <Compile Remove="Infrastructure\Repos\ProductRepo.cs" />
     <Compile Remove="Infrastructure\Repos\TableRepo.cs" />

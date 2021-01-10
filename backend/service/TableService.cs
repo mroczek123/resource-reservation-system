@@ -23,7 +23,7 @@ namespace backend.service
         public void Remove(Guid Id)
         {
             Table SelectedTable = _tables.Tables.ToList()
-                .Find(x => x.Id.ToString().Contains(Id.ToString()));
+                .Find(x => x.Id == Id);
 
             if (SelectedTable == null)
                 throw new SystemException("Table not found.");

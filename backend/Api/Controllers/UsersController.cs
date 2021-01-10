@@ -58,7 +58,7 @@ namespace backend.Controllers
 
         [HttpDelete("{userId}")]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-        public IActionResult DeleteOne([FromRoute]string userId)
+        public IActionResult DeleteOne([FromRoute]Guid userId)
         {
             _userService.Remove(userId);
             return NoContent();

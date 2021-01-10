@@ -9,8 +9,10 @@ namespace backend.service
 {
     public class WorkerService
     {
-        private DataContext context;
-      
+        private DataContext _workers;
+
+        public WorkerService(DataContext workers) => _workers = workers;
+        
 
     }
 }

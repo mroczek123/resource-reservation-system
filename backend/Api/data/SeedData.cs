@@ -17,6 +17,12 @@ namespace Api.data
                     (
                         "Darek",
                         User.PasswordCrypt("xyz")
+                    ),
+
+                    new User
+                    (
+                        "Papryk",
+                        User.PasswordCrypt("mistrz")
                     )
                 );
                 context.SaveChanges();
@@ -28,8 +34,33 @@ namespace Api.data
                     new Product
                     (
                         "Meat",
-                        10.99,
-                        "Kurczak"
+                        3.00,
+                        "Chicken"
+                    ),
+
+                    new Product
+                    (
+                        "Vegetable",
+                        3.50,
+                        "Broccoli"
+                    )
+                );
+                context.SaveChanges();
+            }
+
+            if (!context.Tables.Any())
+            {
+                context.Tables.AddRange(
+                    new Table
+                    (
+                        "Stolik 1",
+                        5
+                    ),
+
+                    new Table
+                    (
+                        "Stolik 2",
+                        3
                     )
                 );
                 context.SaveChanges();

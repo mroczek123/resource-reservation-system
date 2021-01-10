@@ -8,6 +8,14 @@ namespace entity.order
         public string Name { get; set; }
         public int Size { get; set; }
         public Status Status  { get; set; }
+
+        public Table(string Name, int Size)
+        {
+            this.Id = Guid.NewGuid();
+            this.Name = Name;
+            this.Size = Size;
+            this.Status = Status.Free;
+        }
     }
 
     public enum Status

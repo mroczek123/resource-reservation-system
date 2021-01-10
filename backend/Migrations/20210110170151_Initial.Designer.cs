@@ -9,8 +9,8 @@ using backend.entity.utilites;
 namespace backend.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20210107232310_Init")]
-    partial class Init
+    [Migration("20210110170151_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -131,8 +131,8 @@ namespace backend.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("TableId")
-                        .HasColumnType("INTEGER");
+                    b.Property<Guid?>("TableId")
+                        .HasColumnType("TEXT");
 
                     b.Property<double>("Tip")
                         .HasColumnType("REAL");
@@ -175,9 +175,9 @@ namespace backend.Migrations
 
             modelBuilder.Entity("entity.order.Table", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
                         .HasColumnType("TEXT");
