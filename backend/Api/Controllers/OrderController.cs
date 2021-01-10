@@ -1,4 +1,5 @@
-﻿using backend.service;
+﻿using backend.entity.user;
+using backend.service;
 using entity.order;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -21,11 +22,11 @@ namespace backend.Api.Controllers
             _logger = logger;
         }
 
-        [HttpPut("Status/{orderId}")]
-        public Order EditStatus(Guid orderId, Order.status status, Order order)
+        [HttpPut("Receiving/{orderId}")]
+        public IActionResult Receive(Guid orderId, Order.status status, User user, Table table)
         {
-            _orderService.OrderStatus(orderId, status);
-            return order;
+            _orderService.ReceiveOrder(orderId, status, user, table);
+            return NoContent();
         }
 
         [HttpPut("{orderId}")]
@@ -36,7 +37,7 @@ namespace backend.Api.Controllers
         }
 
         [HttpDelete("{orderId}")]
-        public IActionResult Delete(string Id)
+        public IActionResult Delete(Guid Id)
         {
             _orderService.Remove(Id);
             return NoContent();

@@ -85,10 +85,10 @@ namespace backend.service
             }
         }
 
-        public void Remove(string userId)
+        public void Remove(Guid userId)
         {
             User SelectedUser = _users.UserSet.ToList()
-                .Find(x => x.Id.ToString().Contains(userId));
+                .Find(x => x.Id == userId);
             
             if (SelectedUser == null)
                 throw new SystemException("User not found.");
@@ -108,18 +108,14 @@ namespace backend.service
 
         public IEnumerable<User> GetAll()
         {
-            Add(new User("darek","szparek"));
             try
             {
                 return _users.UserSet.ToList();
             }
             catch (NullReferenceException e)
             {
-               Console.Write("dupa"+ e.ToString());
                return new List<User>();
-            }
-
-            
+            }   
         }
 
         public void Update(Guid userId, User user)
