@@ -20,10 +20,10 @@ namespace backend.service
             _tables.Add(table);
         }
 
-        public void Remove(string Id)
+        public void Remove(Guid Id)
         {
             Table SelectedTable = _tables.Tables.ToList()
-                .Find(x => x.Id.ToString().Contains(Id));
+                .Find(x => x.Id.ToString().Contains(Id.ToString()));
 
             if (SelectedTable == null)
                 throw new SystemException("Table not found.");

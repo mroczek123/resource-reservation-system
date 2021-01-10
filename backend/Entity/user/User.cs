@@ -8,11 +8,11 @@ namespace backend.entity.user
 {
     public class User
     {
-        public User( string userName, Right rights, string password)
+        public User( string userName, string password)
         {
             Id = Guid.NewGuid();
             UserName = userName;
-            Rights = rights;
+            Rights = 0;
             Password = password;
         }
 
@@ -26,7 +26,7 @@ namespace backend.entity.user
         
         public enum Right
         {
-            User,
+        User,
             Client,
             Worker
         }

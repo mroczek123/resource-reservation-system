@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Data.SQLite;
 using System.Linq;
 using System.Security.Claims;
@@ -19,6 +20,7 @@ namespace backend.service
         {
             _users = users;
         }
+      
         public Token Login(Authentication authentication)
         {
             User user = _users.UserSet.ToList().Find(u => u.UserName == authentication.Username);
@@ -106,7 +108,18 @@ namespace backend.service
 
         public IEnumerable<User> GetAll()
         {
-           return _users.UserSet;
+            Add(new User("darek","szparek"));
+            try
+            {
+                return _users.UserSet.ToList();
+            }
+            catch (NullReferenceException e)
+            {
+               Console.Write("dupa"+ e.ToString());
+               return new List<User>();
+            }
+
+            
         }
 
         public void Update(Guid userId, User user)

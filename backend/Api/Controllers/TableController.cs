@@ -41,7 +41,7 @@ namespace backend.Controllers
         }
 
         [HttpDelete("{tableId}")]
-        public IActionResult DeleteOne(string Id)
+        public IActionResult DeleteOne(Guid Id)
         {
             _tableService.Remove(Id);
             return NoContent();
