@@ -53,14 +53,6 @@ namespace backend.Api.Controllers
         {
             return _orderService.Get(orderId);
         }
-
-        [HttpPost("create/{orderId}")]
-        public async Task<ActionResult<Order>> CreateOrder(Order order)
-        {
-            _orderService.Add(order);
-            return CreatedAtAction("GetOne", new { id = order.Id }, order);
-        }
-
-
+        
     }
 }

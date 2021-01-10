@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
 using System.Linq;
+using backend.entity.user;
 using backend.entity.utilites;
 using entity.order;
 
@@ -11,9 +12,11 @@ namespace backend.service
     {
         private DataContext _orders;
 
-        public void Add(Order order)
+        public Order CreateBasicOrder(User client, List<Product> products, Table table)
         {
+            Order order = new Order(client, products, table);
             _orders.Add(order);
+            return order;
         }
         public void Remove(string Id)
         {

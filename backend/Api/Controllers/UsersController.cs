@@ -28,10 +28,12 @@ namespace backend.Controllers
     {
         private readonly ILogger<UsersController> _logger;
         private readonly UserService _userService;
-        public UsersController(ILogger<UsersController> logger, UserService userService)
+        private readonly OrderService _orderService;
+        public UsersController(ILogger<UsersController> logger, UserService userService, OrderService orderService)
         {
             _logger = logger;
             _userService = userService;
+            _orderService = orderService;
         }
 
         
@@ -46,6 +48,14 @@ namespace backend.Controllers
         public User GetOne([FromRoute]Guid userId)
         {
             return _userService.Get(userId);
+        }
+        
+       
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [HttpPost( "/createOrder")]
+        public Order CreateOrder([FromBody]BaseOrder baseOrder)
+        {
+            return _orderService.CreateBasicOrder(baseOrder.Client,baseOrder.Products,baseOrder.Table);
         }
         
         [HttpPut("{userId}")]
