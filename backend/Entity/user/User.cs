@@ -26,7 +26,7 @@ namespace backend.entity.user
         
         public enum Right
         {
-        User,
+            User,
             Client,
             Worker
         }
