@@ -9,5 +9,6 @@ namespace backend.entity.product
         public Guid Id { get; set; }
         public Category ParentCategory { get; set; }
         public string Name { get; set; }
+
     }
 }
