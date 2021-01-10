@@ -16,7 +16,6 @@ namespace Api.data
                     new User
                     (
                         "Darek",
-                        (User.Right)3,
                         User.PasswordCrypt("xyz")
                     )
                 );

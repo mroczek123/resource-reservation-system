@@ -31,8 +31,8 @@ namespace backend.entity.utilites
                 modelBuilder.Entity<Category>().ToTable("Category");
                 modelBuilder.Entity<ProductConfiguration>().ToTable("ProductConfiguration");
                 modelBuilder.Entity<User>()
-                    .ToTable("User")
-                    .HasKey(x => x.Id);
+                    .ToTable("User");
+
             }
         }
     }
