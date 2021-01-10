@@ -41,7 +41,7 @@ namespace backend.Controllers
         {
             return _userService.GetAll();
         }
-
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpGet("{userId}", Name = "GetOne")]
         public User GetOne([FromRoute]Guid userId)
         {
@@ -49,6 +49,7 @@ namespace backend.Controllers
         }
         
         [HttpPut("{userId}")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public User UpdateOne([FromRoute]Guid userId, [FromBody]User user)
         {
             _userService.Update(userId, user);
@@ -56,6 +57,7 @@ namespace backend.Controllers
         }
 
         [HttpDelete("{userId}")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public IActionResult DeleteOne([FromRoute]string userId)
         {
             _userService.Remove(userId);
@@ -73,6 +75,7 @@ namespace backend.Controllers
 
         // Delete: api/Users/5
         [HttpDelete("/logout")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task<ActionResult<User>> LogOutUser(User user) // Add Logged ENTITY
         {
            
