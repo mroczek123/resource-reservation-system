@@ -14,7 +14,8 @@ namespace backend.service
 {
     public class UserService
     {
-        public DataContext _users;
+        private DataContext _users;
+        private DataContext _orders; 
 
         public UserService(DataContext users)
         {
@@ -130,13 +131,20 @@ namespace backend.service
         {
             _users.UserSet.ToList().Select(c => c.Credits += credit);
         }
+        
         public bool Pay(User user, Guid userId, double cost)
         {
-            var SelectedUser = _users.UserSet.ToList().Find(u => u.Id == userId);
+            var SelectedUser = _users.UserSet.ToList()
+                .Find(u => u.Id == userId);
+
+            var SelectedOrder = _orders.OrderSet.ToList()
+                .Find(o => o.Client == user);
             
             if ((SelectedUser.Credits - cost) >= 0)
             {
                 _users.UserSet.ToList().Select(c => c.Credits - cost);
+                SelectedOrder.Paid = true;
+                
                 return true;
             }
             else

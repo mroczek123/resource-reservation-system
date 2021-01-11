@@ -15,6 +15,8 @@ namespace entity.order
         public User Worker { get; set; }
         public Table Table { get; set; }
         public status Status { get; set; }
+        public bool Paid { get; set; }
+
         public enum status 
         { 
             Received,
