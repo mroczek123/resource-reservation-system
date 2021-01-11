@@ -9,8 +9,8 @@ using backend.entity.utilites;
 namespace backend.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20210111205443_MAIN")]
-    partial class MAIN
+    [Migration("20210111213257_Main")]
+    partial class Main
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -124,6 +124,9 @@ namespace backend.Migrations
 
                     b.Property<string>("Name")
                         .HasColumnType("TEXT");
+
+                    b.Property<bool>("Paid")
+                        .HasColumnType("INTEGER");
 
                     b.Property<double>("Price")
                         .HasColumnType("REAL");
