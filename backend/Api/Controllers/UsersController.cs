@@ -34,6 +34,19 @@ namespace backend.Controllers
             _userService = userService;
         }
 
+        [HttpPut("AddCredits")]
+        public IActionResult AddCredits(double credit)
+        {
+            _userService.AddCredits(credit);
+            return NoContent();
+        }
+
+        [HttpPut("Paying")]
+        public bool Pay(User user, double cost)
+        {
+            bool PayingResult = _userService.Pay(user, cost);
+            return PayingResult;
+        }
         
         [HttpGet]
         //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]

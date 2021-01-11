@@ -16,13 +16,15 @@ namespace Api.data
                     new User
                     (
                         "Darek",
-                        User.PasswordCrypt("xyz")
+                        User.PasswordCrypt("xyz"),
+                        20
                     ),
 
                     new User
                     (
                         "Papryk",
-                        User.PasswordCrypt("mistrz")
+                        User.PasswordCrypt("mistrz"),
+                        20
                     )
                 );
                 context.SaveChanges();

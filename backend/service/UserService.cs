@@ -124,5 +124,21 @@ namespace backend.service
             _users.Remove(oldUser);
             _users.Add(user);
         }
+
+        // Paying
+        public void AddCredits(double credit)
+        {
+            _users.UserSet.ToList().Select(c => c.Credits += credit);
+        }
+        public bool Pay(User user, double cost)
+        {
+            if ((user.Credits - cost) >= 0)
+            {
+                var Paying = _users.UserSet.ToList().Select(c => c.Credits - cost);
+                return true;
+            }
+            else
+                return false;
+        }
     }
 }
