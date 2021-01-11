@@ -9,8 +9,8 @@ using backend.entity.utilites;
 namespace backend.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20210110170151_Initial")]
-    partial class Initial
+    [Migration("20210111213257_Main")]
+    partial class Main
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -96,6 +96,9 @@ namespace backend.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
+                    b.Property<double>("Credits")
+                        .HasColumnType("REAL");
+
                     b.Property<string>("Password")
                         .HasColumnType("TEXT");
 
@@ -121,6 +124,9 @@ namespace backend.Migrations
 
                     b.Property<string>("Name")
                         .HasColumnType("TEXT");
+
+                    b.Property<bool>("Paid")
+                        .HasColumnType("INTEGER");
 
                     b.Property<double>("Price")
                         .HasColumnType("REAL");

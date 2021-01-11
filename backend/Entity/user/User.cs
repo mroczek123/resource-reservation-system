@@ -8,20 +8,22 @@ namespace backend.entity.user
 {
     public class User
     {
-        public User( string userName, string password)
+        public User( string userName, string password, double credits)
         {
             Id = Guid.NewGuid();
             UserName = userName;
             Rights = 0;
             Password = password;
+            Credits = credits;
         }
 
         public Guid Id { get; set; }
         public string UserName { get; set; }
         public Right Rights { get; set; }
         public string Password { get; set; }
-        
-      
+        public double Credits { get; set; }
+
+
         public List<RefreshToken> RefreshTokens { get; set; }
         
         public enum Right
