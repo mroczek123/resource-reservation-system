@@ -94,6 +94,9 @@ namespace backend.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
+                    b.Property<double>("Credits")
+                        .HasColumnType("REAL");
+
                     b.Property<string>("Password")
                         .HasColumnType("TEXT");
 

@@ -42,9 +42,9 @@ namespace backend.Controllers
         }
 
         [HttpPut("Paying")]
-        public bool Pay(User user, double cost)
+        public bool Pay(User user, Guid userId, double cost)
         {
-            bool PayingResult = _userService.Pay(user, cost);
+            bool PayingResult = _userService.Pay(user, userId, cost);
             return PayingResult;
         }
         

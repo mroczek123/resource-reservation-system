@@ -9,8 +9,8 @@ using backend.entity.utilites;
 namespace backend.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20210110170151_Initial")]
-    partial class Initial
+    [Migration("20210111205443_MAIN")]
+    partial class MAIN
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -95,6 +95,9 @@ namespace backend.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
+
+                    b.Property<double>("Credits")
+                        .HasColumnType("REAL");
 
                     b.Property<string>("Password")
                         .HasColumnType("TEXT");

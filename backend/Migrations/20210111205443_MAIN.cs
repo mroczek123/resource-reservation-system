@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace backend.Migrations
 {
-    public partial class Initial : Migration
+    public partial class MAIN : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -87,7 +87,8 @@ namespace backend.Migrations
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
                     UserName = table.Column<string>(type: "TEXT", nullable: true),
                     Rights = table.Column<int>(type: "INTEGER", nullable: false),
-                    Password = table.Column<string>(type: "TEXT", nullable: true)
+                    Password = table.Column<string>(type: "TEXT", nullable: true),
+                    Credits = table.Column<double>(type: "REAL", nullable: false)
                 },
                 constraints: table =>
                 {

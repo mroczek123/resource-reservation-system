@@ -130,11 +130,13 @@ namespace backend.service
         {
             _users.UserSet.ToList().Select(c => c.Credits += credit);
         }
-        public bool Pay(User user, double cost)
+        public bool Pay(User user, Guid userId, double cost)
         {
-            if ((user.Credits - cost) >= 0)
+            var SelectedUser = _users.UserSet.ToList().Find(u => u.Id == userId);
+            
+            if ((SelectedUser.Credits - cost) >= 0)
             {
-                var Paying = _users.UserSet.ToList().Select(c => c.Credits - cost);
+                _users.UserSet.ToList().Select(c => c.Credits - cost);
                 return true;
             }
             else
