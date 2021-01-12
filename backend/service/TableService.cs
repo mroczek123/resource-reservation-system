@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
 using System.Linq;
+using backend.entity.table;
 using backend.entity.utilites;
 using entity.order;
 

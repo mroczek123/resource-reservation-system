@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace backend.Entity.utilites
+namespace backend.entity.order.Invoice
 {
     public class Address
     {
