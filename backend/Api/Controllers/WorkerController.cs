@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using backend.entity.user;
+using backend.Entity.utilites;
 using backend.service;
 using entity.order;
 using Microsoft.AspNetCore.Mvc;
@@ -13,14 +14,16 @@ namespace backend.Controllers
     [Route("api/Management/[controller]")]
     public class WorkerController : ControllerBase
     {
+        private WorkerService _workerService;
         private TableService _workerServiceTable;
         private OrderService _workerServiceOrder;
         private readonly ILogger<WorkerController> _logger;
 
-        public WorkerController(TableService workerServiceTable, OrderService workerServiceOrder, ILogger<WorkerController> logger)
+        public WorkerController(TableService workerServiceTable, OrderService workerServiceOrder,WorkerService workerService, ILogger<WorkerController> logger)
         {
             _workerServiceTable = workerServiceTable;
             _workerServiceOrder = workerServiceOrder;
+            _workerService = workerService;
             _logger = logger;
         }
         // TABLES
@@ -69,6 +72,14 @@ namespace backend.Controllers
         public Order GetOne(Guid orderId)
         {
             return _workerServiceOrder.Get(orderId);
+        }
+
+        [HttpPost("Invoices/{orderId}")]
+        public ActionResult<Invoice> CreateInvoice(Invoice invoice, Guid orderId)
+        {
+            _workerService.GenerateInvoice(orderId);
+
+            return CreatedAtAction("CreateInvoice", new { id = invoice.Id }, invoice);
         }
 
     }
