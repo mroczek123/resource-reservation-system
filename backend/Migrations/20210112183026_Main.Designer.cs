@@ -9,7 +9,7 @@ using backend.entity.utilites;
 namespace backend.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20210111213257_Main")]
+    [Migration("20210112183026_Main")]
     partial class Main
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -17,6 +17,60 @@ namespace backend.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "5.0.1");
+
+            modelBuilder.Entity("backend.Entity.utilites.Address", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("City")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Street")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("StreetNr")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("ZipCode")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Address");
+                });
+
+            modelBuilder.Entity("backend.Entity.utilites.Invoice", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid?>("AddressId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("CompanyName")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("NIP")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("OrderId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<double>("Sum")
+                        .HasColumnType("REAL");
+
+                    b.Property<string>("UserName")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AddressId");
+
+                    b.ToTable("Invoices");
+                });
 
             modelBuilder.Entity("backend.entity.product.Category", b =>
                 {
@@ -197,6 +251,15 @@ namespace backend.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Tables");
+                });
+
+            modelBuilder.Entity("backend.Entity.utilites.Invoice", b =>
+                {
+                    b.HasOne("backend.Entity.utilites.Address", "Address")
+                        .WithMany()
+                        .HasForeignKey("AddressId");
+
+                    b.Navigation("Address");
                 });
 
             modelBuilder.Entity("backend.entity.product.Category", b =>

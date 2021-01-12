@@ -8,6 +8,21 @@ namespace backend.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "Address",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
+                    Street = table.Column<string>(type: "TEXT", nullable: true),
+                    StreetNr = table.Column<int>(type: "INTEGER", nullable: false),
+                    City = table.Column<string>(type: "TEXT", nullable: true),
+                    ZipCode = table.Column<string>(type: "TEXT", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Address", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Category",
                 columns: table => new
                 {
@@ -96,6 +111,29 @@ namespace backend.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Invoices",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
+                    OrderId = table.Column<Guid>(type: "TEXT", nullable: false),
+                    CompanyName = table.Column<string>(type: "TEXT", nullable: true),
+                    AddressId = table.Column<Guid>(type: "TEXT", nullable: true),
+                    NIP = table.Column<string>(type: "TEXT", nullable: true),
+                    UserName = table.Column<string>(type: "TEXT", nullable: true),
+                    Sum = table.Column<double>(type: "REAL", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Invoices", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Invoices_Address_AddressId",
+                        column: x => x.AddressId,
+                        principalTable: "Address",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Order",
                 columns: table => new
                 {
@@ -164,6 +202,11 @@ namespace backend.Migrations
                 column: "ParentCategoryId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Invoices_AddressId",
+                table: "Invoices",
+                column: "AddressId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Order_ClientId",
                 table: "Order",
                 column: "ClientId");
@@ -195,6 +238,9 @@ namespace backend.Migrations
                 name: "Category");
 
             migrationBuilder.DropTable(
+                name: "Invoices");
+
+            migrationBuilder.DropTable(
                 name: "Option");
 
             migrationBuilder.DropTable(
@@ -205,6 +251,9 @@ namespace backend.Migrations
 
             migrationBuilder.DropTable(
                 name: "RefreshToken");
+
+            migrationBuilder.DropTable(
+                name: "Address");
 
             migrationBuilder.DropTable(
                 name: "Product");

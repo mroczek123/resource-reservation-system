@@ -42,9 +42,20 @@ namespace backend.Controllers
         }
 
         [HttpPut("Paying")]
-        public bool Pay(User user, Guid userId, double cost)
+        public bool Pay(User user, bool tip, double amount)
         {
-            bool PayingResult = _userService.Pay(user, userId, cost);
+            bool PayingResult = _userService.Pay(user);
+            
+            if (PayingResult == false)
+            {
+                throw new Exception("You dont have money. Add Credits to your account.");
+            }
+            
+            if (tip == true && PayingResult == true)
+            {
+                _userService.GiveTip(user, amount);
+            }
+   
             return PayingResult;
         }
         
