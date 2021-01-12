@@ -132,23 +132,33 @@ namespace backend.service
             _users.UserSet.ToList().Select(c => c.Credits += credit);
         }
         
-        public bool Pay(User user, Guid userId, double cost)
+        public bool Pay(User user)
         {
-            var SelectedUser = _users.UserSet.ToList()
-                .Find(u => u.Id == userId);
-
-            var SelectedOrder = _orders.OrderSet.ToList()
+            var _order = _orders.OrderSet.ToList()
                 .Find(o => o.Client == user);
             
-            if ((SelectedUser.Credits - cost) >= 0)
+            if ((_order.Client.Credits - _order.Price) >= 0)
             {
-                _users.UserSet.ToList().Select(c => c.Credits - cost);
-                SelectedOrder.Paid = true;
+                _orders.OrderSet.ToList().Select(c => c.Client.Credits - _order.Price);
+                _order.Paid = true;
                 
                 return true;
             }
             else
                 return false;
+        }
+
+        public void GiveTip(User user, double tip)
+        {
+            var _order = _orders.OrderSet.ToList()
+                .Find(o => o.Client == user);
+
+            if ((_order.Client.Credits - tip) >= 0)
+            {
+                _orders.OrderSet.ToList().Select(c => c.Client.Credits - tip);
+            }
+            else
+                throw new Exception("You dont have enough money");
         }
     }
 }
