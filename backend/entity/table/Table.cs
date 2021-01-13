@@ -1,6 +1,6 @@
 using System;
 
-namespace entity.order
+namespace backend.entity.table
 {
     public class Table
     {

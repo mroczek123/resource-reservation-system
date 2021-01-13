@@ -1,11 +1,6 @@
-﻿using backend.entity.user;
-using entity.order;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System;
 
-namespace backend.Entity.utilites
+namespace backend.entity.order.Invoice
 {
     public class Invoice
     {

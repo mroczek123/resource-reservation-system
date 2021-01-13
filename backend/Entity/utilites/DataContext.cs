@@ -1,6 +1,7 @@
+using backend.entity.order.Invoice;
 using backend.entity.product;
+using backend.entity.table;
 using backend.entity.user;
-using backend.Entity.utilites;
 using entity.order;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -32,10 +33,11 @@ namespace backend.entity.utilites
             modelBuilder.Entity<Product>().ToTable("Product");
             modelBuilder.Entity<Option>().ToTable("Option");
             modelBuilder.Entity<Category>().ToTable("Category");
+            modelBuilder.Entity<Address>().ToTable("Address");
             modelBuilder.Entity<ProductConfiguration>().ToTable("ProductConfiguration");
             modelBuilder.Entity<User>().ToTable("User");
             modelBuilder.Entity<Invoice>().ToTable("Invoices");
-            modelBuilder.Entity<Address>().ToTable("Address");
+            
 
         }
     }
