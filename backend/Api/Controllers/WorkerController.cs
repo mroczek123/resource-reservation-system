@@ -34,6 +34,7 @@ namespace backend.Controllers
         }
         // TABLES
         [HttpGet("Table/{tableId}")]
+
         public Table GetTable(Guid tableId)
         {
             return _workerServiceTable.Get(tableId);
@@ -88,6 +89,7 @@ namespace backend.Controllers
         }
 
         [HttpGet("Order/{orderId}")]
+
         public Order GetOrder(Guid orderId)
         {
             return _workerServiceOrder.Get(orderId);
@@ -161,6 +163,7 @@ namespace backend.Controllers
         {
             _workerServiceCategory.Add(category);
             return CreatedAtAction("GetOneCategory", new { id = category.Id }, category);
+
         }
     }
 }
