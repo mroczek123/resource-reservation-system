@@ -51,5 +51,21 @@ namespace backend.service
             else
                 return _tables.Tables;
         }
+
+        public void Reservation(Guid tableId)
+        {
+            Table _table = _tables.Tables
+                .ToList()
+                .Find(t => t.Id == tableId);
+            
+            var _status = _table.Status;
+
+            if (_status.Equals(Table.status.Free))
+            {
+                _status = Table.status.Reserved;
+            }
+            else
+                throw new Exception("Table was already reserved.");
+        }
     }
 }

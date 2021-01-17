@@ -54,5 +54,13 @@ namespace backend.Controllers
             _tableService.Add(table);
             return CreatedAtAction("GetOne", new { id = table.Id }, table);
         }
+
+        [HttpPut("Reservation/{tableId}")]
+        public IActionResult Reserve(Guid tableId)
+        {
+            _tableService.Reservation(tableId);
+            
+            return NoContent();
+        }
     }
 }
