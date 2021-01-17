@@ -18,13 +18,15 @@ namespace backend.Controllers
         private WorkerService _workerService;
         private TableService _workerServiceTable;
         private OrderService _workerServiceOrder;
+        private ProductService _workerServiceProduct;
         private readonly ILogger<WorkerController> _logger;
 
-        public WorkerController(TableService workerServiceTable, OrderService workerServiceOrder,WorkerService workerService, ILogger<WorkerController> logger)
+        public WorkerController(ProductService workerServiceProduct ,TableService workerServiceTable, OrderService workerServiceOrder,WorkerService workerService, ILogger<WorkerController> logger)
         {
             _workerServiceTable = workerServiceTable;
             _workerServiceOrder = workerServiceOrder;
             _workerService = workerService;
+            _workerServiceProduct = workerServiceProduct;
             _logger = logger;
         }
         // TABLES
@@ -82,6 +84,39 @@ namespace backend.Controllers
 
             return CreatedAtAction("CreateInvoice", new { id = invoice.Id }, invoice);
         }
+        /// Product Management
 
+        [HttpPost("Product/{productId}")]
+        public ActionResult<Product> AddProduct(Product product)
+        {
+            _workerServiceProduct.Add(product);
+            return CreatedAtAction("GetOne", new { id = product.Id }, product);
+        }
+
+        [HttpDelete("Product/{productId}")]
+        public IActionResult Delete(string productId)
+        {
+            _workerServiceProduct.Remove(productId);
+            return NoContent();
+        }
+
+        [HttpGet("Product/{productId}")]
+        public Product GetProduct(Guid productId)
+        {
+            return _workerServiceProduct.Get(productId);
+        }
+
+        [HttpGet("Product/All")]
+        public IEnumerable<Product> GetAllProducts()
+        {
+            return _workerServiceProduct.GetAllProducts();
+        }
+
+        [HttpPut("Product/{productId}")]
+        public Product Edit(Guid productId, Product product)
+        {
+            _workerServiceProduct.Update(productId, product);
+            return product;
+        }
     }
 }
