@@ -31,13 +31,13 @@ namespace backend.Controllers
         }
         // TABLES
         [HttpGet("{tableId}")]
-        public Table GetOne(Guid tableId)
+        public Table GetTable(Guid tableId)
         {
             return _workerServiceTable.Get(tableId);
         }
 
-        [HttpGet("All")]
-        public IEnumerable<Table> GetAll()
+        [HttpGet("Table/All")]
+        public IEnumerable<Table> GetAllTables()
         {
             return _workerServiceTable.GetAllTables();
         }
@@ -50,14 +50,14 @@ namespace backend.Controllers
         }
 
         [HttpDelete("{tableId}")]
-        public IActionResult DeleteOne(Guid Id)
+        public IActionResult DeleteTable(Guid Id)
         {
             _workerServiceTable.Remove(Id);
             return NoContent();
         }
 
         [HttpPut("{tableId}")]
-        public Table UpdateOne(Guid tableId, Table table)
+        public Table UpdateTable(Guid tableId, Table table)
         {
             _workerServiceTable.Update(tableId, table);
             return table;
@@ -65,27 +65,27 @@ namespace backend.Controllers
 
         // ORDER
         [HttpPut("Receiving/{orderId}")]
-        public IActionResult Receive(Guid orderId, Order.status status, User user)
+        public IActionResult ReceiveOrder(Guid orderId, Order.status status, User user)
         {
             _workerServiceOrder.ReceiveOrder(orderId, status, user);
             return NoContent();
         }
 
         [HttpDelete("{orderId}")]
-        public IActionResult Delete(Guid Id)
+        public IActionResult DeleteOrder(Guid Id)
         {
             _workerServiceOrder.Remove(Id);
             return NoContent();
         }
 
-        [HttpGet("All")]
-        public IEnumerable<Order> Get()
+        [HttpGet("Order/All")]
+        public IEnumerable<Order> GetAllOrders()
         {
             return _workerServiceOrder.GetAll();
         }
 
         [HttpGet("{orderId}")]
-        public Order GetOne(Guid orderId)
+        public Order GetOrder(Guid orderId)
         {
             return _workerServiceOrder.Get(orderId);
         }
@@ -107,7 +107,7 @@ namespace backend.Controllers
         }
 
         [HttpDelete("Product/{productId}")]
-        public IActionResult Delete(string productId)
+        public IActionResult DeleteProduct(string productId)
         {
             _workerServiceProduct.Remove(productId);
             return NoContent();
