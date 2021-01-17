@@ -30,7 +30,13 @@ namespace backend.Controllers
             _logger = logger;
         }
         // TABLES
-        [HttpGet]
+        [HttpGet("{tableId}")]
+        public Table GetOne(Guid tableId)
+        {
+            return _workerServiceTable.Get(tableId);
+        }
+
+        [HttpGet("All")]
         public IEnumerable<Table> GetAll()
         {
             return _workerServiceTable.GetAllTables();
@@ -48,6 +54,13 @@ namespace backend.Controllers
         {
             _workerServiceTable.Remove(Id);
             return NoContent();
+        }
+
+        [HttpPut("{tableId}")]
+        public Table UpdateOne(Guid tableId, Table table)
+        {
+            _workerServiceTable.Update(tableId, table);
+            return table;
         }
 
         // ORDER
