@@ -29,13 +29,21 @@ namespace backend.Controllers
         private readonly ILogger<UsersController> _logger;
         private readonly UserService _userService;
         private readonly OrderService _orderService;
+        private readonly TableService _userServiceTable;
         public UsersController(ILogger<UsersController> logger, UserService userService, OrderService orderService)
         {
             _logger = logger;
             _userService = userService;
             _orderService = orderService;
         }
-
+        //Table Reservation
+        [HttpPut("Reservation/{tableId}")]
+        public IActionResult Reserve(Guid tableId)
+        {
+            _userServiceTable.Reservation(tableId);
+            return NoContent();
+        }
+        //Paying 
         [HttpPut("AddCredits")]
         public IActionResult AddCredits(double credit)
         {
@@ -112,8 +120,6 @@ namespace backend.Controllers
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task<ActionResult<User>> LogOutUser(User user) // Add Logged ENTITY
         {
-           
-
             return NoContent();
         }
     }

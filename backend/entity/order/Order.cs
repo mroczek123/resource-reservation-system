@@ -25,7 +25,6 @@ namespace entity.order
             Status = status.InProgress;
         }
 
-
         public Order()
         {
         }
@@ -40,10 +39,6 @@ namespace entity.order
         public Table Table { get; set; }
         public status Status { get; set; }
         public bool Paid { get; set; }
-        
-        
-        
-        
 
         public enum status 
         { 
