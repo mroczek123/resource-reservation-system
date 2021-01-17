@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using backend.entity.order.Invoice;
+using backend.entity.product;
 using backend.entity.table;
 using backend.entity.user;
 using backend.service;
@@ -19,6 +20,7 @@ namespace backend.Controllers
         private TableService _workerServiceTable;
         private OrderService _workerServiceOrder;
         private ProductService _workerServiceProduct;
+        private CategoryService _workerServiceCategory;
         private readonly ILogger<WorkerController> _logger;
 
         public WorkerController(ProductService workerServiceProduct ,TableService workerServiceTable, OrderService workerServiceOrder,WorkerService workerService, ILogger<WorkerController> logger)
@@ -130,6 +132,34 @@ namespace backend.Controllers
         {
             _workerServiceProduct.Update(productId, product);
             return product;
+        }
+
+        // Category Management
+
+        [HttpGet("{categoryId}")]
+        public Category GetOneCategory(Guid categoryId)
+        {
+            return _workerServiceCategory.GetOne(categoryId);
+        }
+
+        [HttpGet("All/")]
+        public IEnumerable<Category> GetAllCategories()
+        {
+            return _workerServiceCategory.GetAll();
+        }
+
+        [HttpPut("Edit/{categoryId}")]
+        public Category EditCategory(Guid categoryId, Category category)
+        {
+            _workerServiceCategory.Edit(categoryId, category);
+            return category;
+        }
+
+        [HttpPost("Create/{categoryId}")]
+        public ActionResult<Category> AddCategory(Category category)
+        {
+            _workerServiceCategory.Add(category);
+            return CreatedAtAction("GetOneCategory", new { id = category.Id }, category);
         }
     }
 }
