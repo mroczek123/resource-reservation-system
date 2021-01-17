@@ -60,9 +60,9 @@ namespace backend.service
             
             var _status = _table.Status;
 
-            if (_status.Equals(Table.status.Free))
+            if (_status.Equals(Table.State.Free))
             {
-                _status = Table.status.Reserved;
+                _status = Table.State.Reserved;
             }
             else
                 throw new Exception("Table was already reserved.");

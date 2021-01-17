@@ -23,16 +23,17 @@ namespace backend.Controllers
         private CategoryService _workerServiceCategory;
         private readonly ILogger<WorkerController> _logger;
 
-        public WorkerController(ProductService workerServiceProduct ,TableService workerServiceTable, OrderService workerServiceOrder,WorkerService workerService, ILogger<WorkerController> logger)
+        public WorkerController(ProductService workerServiceProduct ,TableService workerServiceTable, OrderService workerServiceOrder,WorkerService workerService, CategoryService workerServiceCategory, ILogger<WorkerController> logger)
         {
             _workerServiceTable = workerServiceTable;
             _workerServiceOrder = workerServiceOrder;
             _workerService = workerService;
             _workerServiceProduct = workerServiceProduct;
+            _workerServiceCategory = workerServiceCategory;
             _logger = logger;
         }
         // TABLES
-        [HttpGet("{tableId}")]
+        [HttpGet("Table/{tableId}")]
         public Table GetTable(Guid tableId)
         {
             return _workerServiceTable.Get(tableId);
@@ -86,7 +87,7 @@ namespace backend.Controllers
             return _workerServiceOrder.GetAll();
         }
 
-        [HttpGet("{orderId}")]
+        [HttpGet("Order/{orderId}")]
         public Order GetOrder(Guid orderId)
         {
             return _workerServiceOrder.Get(orderId);
@@ -109,7 +110,7 @@ namespace backend.Controllers
         }
 
         [HttpDelete("Product/{productId}")]
-        public IActionResult DeleteProduct(string productId)
+        public IActionResult DeleteProduct(Guid productId)
         {
             _workerServiceProduct.Remove(productId);
             return NoContent();
@@ -136,19 +137,19 @@ namespace backend.Controllers
 
         // Category Management
 
-        [HttpGet("{categoryId}")]
+        [HttpGet("Category/{categoryId}")]
         public Category GetOneCategory(Guid categoryId)
         {
             return _workerServiceCategory.GetOne(categoryId);
         }
 
-        [HttpGet("All/")]
+        [HttpGet("Category/All")]
         public IEnumerable<Category> GetAllCategories()
         {
             return _workerServiceCategory.GetAll();
         }
 
-        [HttpPut("Edit/{categoryId}")]
+        [HttpPut("Category/Edit/{categoryId}")]
         public Category EditCategory(Guid categoryId, Category category)
         {
             _workerServiceCategory.Edit(categoryId, category);

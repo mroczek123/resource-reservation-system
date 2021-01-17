@@ -18,6 +18,7 @@ namespace backend.Api.Controllers
         {
             _categoryService = categoryService;
         }
+        
         [HttpGet("{categoryId}")]
         public Category GetOne(Guid categoryId)
         {

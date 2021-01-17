@@ -22,10 +22,10 @@ namespace backend.service
             _products.Add(product);
         }
 
-        public void Remove(string Id)
+        public void Remove(Guid Id)
         {
             Product SelectedProduct = _products.ProductSet.ToList()
-                .Find(x => x.Id.ToString().Contains(Id));
+                .Find(x => x.Id == Id);
             
             if (SelectedProduct == null)
                 throw new SystemException("Product not found.");
