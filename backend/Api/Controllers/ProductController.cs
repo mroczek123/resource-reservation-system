@@ -21,12 +21,6 @@ namespace backend.Api.Controllers
             _productService = productService;
             _logger = logger;
         }
-        [HttpPut("{productId}")]
-        public Product Edit(Guid productId, Product product)
-        {
-            _productService.Update(productId, product);
-            return product;
-        }
 
         [HttpPost("{productId}")]
         public async Task<ActionResult<Product>> AddProduct(Product product)
@@ -52,6 +46,13 @@ namespace backend.Api.Controllers
         public IEnumerable<Product> Get()
         {
             return _productService.GetAllProducts();
+        }
+
+        [HttpPut("Product/{productId}")]
+        public Product Edit(Guid productId, Product product)
+        {
+            _productService.Update(productId, product);
+            return product;
         }
     }
 }
