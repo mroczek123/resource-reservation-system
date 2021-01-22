@@ -10,5 +10,12 @@ namespace backend.entity.product
         public Category ParentCategory { get; set; }
         public string Name { get; set; }
 
+        public Category(string Name)
+        {
+            this.Id = Guid.NewGuid();
+            this.ParentCategory = ParentCategory;
+            this.Name = Name;
+        }
+
     }
 }
