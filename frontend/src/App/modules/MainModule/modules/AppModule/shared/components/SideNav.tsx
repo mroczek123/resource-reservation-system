@@ -29,19 +29,9 @@ function _SideNav(props: StyleProps & StateProps): JSX.Element {
       url: `${match.url}/employees`,
     },
     {
-      label: translate("Analytics"),
-      icon: "show_chart",
-      url: `${match.url}/analytics`,
-    },
-    {
       label: translate("Bills"),
       icon: "account_balance_wallet",
       url: `${match.url}/bills`,
-    },
-    {
-      label: translate("Settings"),
-      icon: "settings",
-      url: `${match.url}/settings`,
     },
     {
       label: translate("Logout"),
@@ -54,9 +44,6 @@ function _SideNav(props: StyleProps & StateProps): JSX.Element {
       className="sidenav sidenav-fixed"
       style={{ zIndex: 1, position: "unset", height: "unset", width: "unset", ...props.style }}
     >
-      <li className="center-align">
-        <img className="responsive-img" style={{ height: "150px" }} src="static/img/logo.png" />
-      </li>
       {menuItems.map((menuItem) => (
         <li>
           <NavLink to={menuItem.url} className="waves-effect">

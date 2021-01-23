@@ -1,10 +1,10 @@
 export class Product {
-  id: string;
+  id?: string;
   name: string;
   price: number;
   category: ProductCategory;
 
-  constructor(data: Product) {
+  constructor(data: {id ?: string, name: string, price: number, category: ProductCategory}) {
     this.id = data.id;
     this.name = data.name;
     this.price = data.price;

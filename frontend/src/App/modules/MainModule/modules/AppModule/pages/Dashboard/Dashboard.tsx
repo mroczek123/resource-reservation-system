@@ -15,11 +15,8 @@ function _Dashboard(props: StateProps): JSX.Element {
     ],
   };
   return (
-    <div style={{height: "100vh"}}>
-      Dashboard
-      <div className="card" style={{width: "300px", height:"300px", padding: "20px"}}>
-        <Doughnut data={data} width={300} height={300} options={{ maintainAspectRatio: false }}  />
-      </div>
+    <div style={{height: "100vh"}} className="center">
+      <h1>Choose page</h1>
     </div>
   );
 }

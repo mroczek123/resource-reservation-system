@@ -1,6 +1,6 @@
 import { dispatch } from "../../Store/Store";
 import { ActionType } from "../../Store/types/ActionType";
-import { Product, ProductCategory, ProductCategoryChoices } from "../models/Product";
+import { Product, ProductCategory } from "../models/Product";
 
 export class ProductsService {
   static getAll(): void {

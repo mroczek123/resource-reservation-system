@@ -2,7 +2,7 @@ import { translate } from "@src/App/shared/modules/Translation/translate";
 import { ParentRouteProp } from "@src/App/shared/types/ParentRouteProp";
 
 import * as React from "react";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { LogInForm } from "./components/LogInForm";
 
 export function LogIn(props: ParentRouteProp): JSX.Element {
@@ -15,6 +15,9 @@ export function LogIn(props: ParentRouteProp): JSX.Element {
       <div className="valign-wrapper" style={{ height: "100%" }}>
         <div className="container">
           <div className="card z-depth-2" style={{ padding: "60px" }}>
+            <div className="row">
+              <Link to="/"> &lt; Go back to home site</Link>
+            </div>
             <div className="row center-align">
               <img
                 className="responsive-img"
@@ -29,7 +32,7 @@ export function LogIn(props: ParentRouteProp): JSX.Element {
               <div className="col s3" />
             </div>
             <div className="row center-align">
-              <button className="btn">{translate("register")}</button>
+              <Link to="/app/account/register" className="btn">{translate("register")}</Link>
             </div>
           </div>
         </div>

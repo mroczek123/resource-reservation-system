@@ -3,10 +3,8 @@ import * as React from "react";
 import { Dashboard } from "./pages/Dashboard/Dashboard";
 import { SideNav } from "./shared/components/SideNav";
 import { Bills } from "./pages/Bills/Bills";
-import { Settings } from "./pages/Settings/Settings";
 import { Products } from "./pages/Products/Products";
 import { Employees } from "./pages/Employees/Employees";
-import { Analytics } from "./pages/Analytics/Analytics";
 import { Order } from "./pages/Order/Order";
 
 export function AppModule(): JSX.Element {
@@ -40,14 +38,8 @@ function Router() {
       <Route path={`${routeMatch.url}/order`}>
         <Order />
       </Route>
-      <Route path={`${routeMatch.url}/analytics`}>
-        <Analytics />
-      </Route>
       <Route path={`${routeMatch.url}/bills`}>
         <Bills />
-      </Route>
-      <Route path={`${routeMatch.url}/settings`}>
-        <Settings />
       </Route>
     </Switch>
   );

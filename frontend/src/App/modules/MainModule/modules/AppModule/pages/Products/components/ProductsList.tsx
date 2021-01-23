@@ -11,11 +11,13 @@ export function ProductsList(props: { items: Array<Product> }): JSX.Element {
   return (
     <ul className="collection">
       {props.items.map((product) => {
+          const displayEditModal = () => ModalService.displayModal(ProductEditModal({ product }));
+          const displayRemoveModal = () => product.id ? ModalService.displayModal(ProductRemoveModal({ id: product.id })) : undefined;
         return (
           <ProductItem
             product={product}
-            editCallback={() => ModalService.displayModal(ProductEditModal({ product }))}
-            removeCallback={() => ModalService.displayModal(ProductRemoveModal({ id: product.id }))}
+            editCallback={displayEditModal}
+            removeCallback={displayRemoveModal}
           />
         );
       })}

@@ -8,6 +8,7 @@ import {
   User,
   UserRole,
 } from "@src/App/modules/MainModule/modules/AccountModule/services/UserService/types/User";
+import { Product, ProductCategory } from "../Products/models/Product";
 
 export const StoreInitialState: StoreState = {
   user: new User({
@@ -20,8 +21,15 @@ export const StoreInitialState: StoreState = {
   }),
   resources: {
     products: {
-      entries: [],
+      entries: [
+        new Product({ id: "1", name: "Gołąbki", price: 12, category: ProductCategory.DINNER }),
+        new Product({ id: "2", name: "Jajecznica", price: 12, category: ProductCategory.BREAKFAST }),
+        new Product({ id: "3", name: "Pomidorowa", price: 12, category: ProductCategory.SUPPER }),
+      ],
     },
+    orderEntries: {
+      entries: []
+    }
   },
   modals: {
     current: null,
@@ -51,6 +59,6 @@ function defaultMapStateToProps<T>(state: StoreState, ownProps: T): T & StatePro
 
 export const Store = createStore(mainReducer);
 export const dispatch = (action: Action) => Store.dispatch(action);
-export function connect<T>(x: T): any {
+export function connect<T>(x: any) {
   return redux_connect(defaultMapStateToProps)(x as any) as any; // TODO: fix typing
 }
