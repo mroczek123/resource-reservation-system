@@ -9,8 +9,8 @@ using backend.entity.utilites;
 namespace backend.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20210117095645_Papryk")]
-    partial class Papryk
+    [Migration("20210122184952_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
