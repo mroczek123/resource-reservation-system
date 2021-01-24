@@ -8,13 +8,12 @@ export function ProductItem(props: {
 }): JSX.Element {
   return (
     <li
-      className="collection-item right-align valign-wrapper"
-      style={{ justifyContent: "space-between" }}
+      className="collection-item valign-wrapper"
+      style={{ justifyContent: "space-between", display: "flex" }}
     >
       <span>
-        <span>
-          {props.product.name} {props.product.price}
-        </span>
+        Name: {props.product.name} <br/>
+        Price:{props.product.price}
       </span>
       <span>
         <button onClick={props.editCallback} className="btn blue" style={{ marginRight: "10px" }}>

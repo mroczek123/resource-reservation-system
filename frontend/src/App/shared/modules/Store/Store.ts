@@ -9,6 +9,7 @@ import {
   UserRole,
 } from "@src/App/modules/MainModule/modules/AccountModule/services/UserService/types/User";
 import { Product, ProductCategory } from "../Products/models/Product";
+import { Employee } from "../Employees/models/Employee";
 
 export const StoreInitialState: StoreState = {
   user: new User({
@@ -29,6 +30,13 @@ export const StoreInitialState: StoreState = {
     },
     orderEntries: {
       entries: []
+    },
+    employees: {
+      entries: [
+        new Employee({id: "1", firstName: "Jan", lastName: "Kowlaski", role: "Waiter"}),
+        new Employee({id: "2", firstName: "Tadeusz", lastName: "Rydzyk", role: "Chef"}),
+        new Employee({id: "3", firstName: "Grzegosz", lastName: "Brzęczyszczykiewicz", role: "Waiter"}),
+      ]
     }
   },
   modals: {
