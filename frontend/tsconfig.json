@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist/",
+    "baseUrl": ".",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "alwaysStrict": true,
+    "target": "ES2020",
+    "strict": true,
+    "jsx": "react",
+    "resolveJsonModule": true,
+    "paths":{
+      "@src/*": ["./src/*"],
+      "@static/*": ["./src/static/*"],
+    }
+  },
+  "exclude": ["node_modules", "dist"]
+}
