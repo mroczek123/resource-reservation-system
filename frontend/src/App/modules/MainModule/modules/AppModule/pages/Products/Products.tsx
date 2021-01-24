@@ -1,5 +1,3 @@
-import { Product } from "@src/App/shared/modules/Products/models/Product";
-import { ProductsService } from "@src/App/shared/modules/Products/services/ProductsService";
 import { connect, Store } from "@src/App/shared/modules/Store/Store";
 import { StateProps } from "@src/App/shared/modules/Store/types/StateProps";
 import { ModalService } from "@src/App/shared/services/ModalService";

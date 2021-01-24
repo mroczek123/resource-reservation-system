@@ -10,6 +10,7 @@ import {
 } from "@src/App/modules/MainModule/modules/AccountModule/services/UserService/types/User";
 import { Product, ProductCategory } from "../Products/models/Product";
 import { Employee } from "../Employees/models/Employee";
+import { Bill } from "../Bills/models/Bill";
 
 export const StoreInitialState: StoreState = {
   user: new User({
@@ -36,6 +37,13 @@ export const StoreInitialState: StoreState = {
         new Employee({id: "1", firstName: "Jan", lastName: "Kowlaski", role: "Waiter"}),
         new Employee({id: "2", firstName: "Tadeusz", lastName: "Rydzyk", role: "Chef"}),
         new Employee({id: "3", firstName: "Grzegosz", lastName: "Brzęczyszczykiewicz", role: "Waiter"}),
+      ]
+    },
+    bills: {
+      entries: [
+        new Bill({id: "1", displayData: "Table 1", value: 69}),
+        new Bill({id: "2", displayData: "Table 2", value: 123}),
+        new Bill({id: "3", displayData: "Table 3", value: 19}),
       ]
     }
   },

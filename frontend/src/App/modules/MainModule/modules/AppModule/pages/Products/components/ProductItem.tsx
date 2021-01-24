@@ -13,7 +13,7 @@ export function ProductItem(props: {
     >
       <span>
         Name: {props.product.name} <br/>
-        Price:{props.product.price}
+        Price: {props.product.price} PLN
       </span>
       <span>
         <button onClick={props.editCallback} className="btn blue" style={{ marginRight: "10px" }}>
