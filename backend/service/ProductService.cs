@@ -44,7 +44,7 @@ namespace backend.service
 
         public Product Get(Guid Id)
         {
-            return (Product)_products.ProductSet.Select(x => x.Id == Id); // TEST
+            return _products.ProductSet.ToList().Find(x => x.Id == Id); // TEST
         }
         public IEnumerable<Product> GetAllProducts()
         {

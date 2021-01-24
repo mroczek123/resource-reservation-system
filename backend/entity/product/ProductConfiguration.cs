@@ -8,6 +8,7 @@ namespace backend.entity.product
     {
         public Guid Id { get; set; }
         public string ConfigName { get; set; }
-        // dodac Array options
+        
+        public List<Option> Options { get; set; }
     }
 }

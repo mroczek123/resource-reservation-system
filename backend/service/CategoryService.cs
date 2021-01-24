@@ -38,9 +38,8 @@ namespace backend.service
 
         public Category GetOne(Guid categoryId)
         {
-            var SelectedCategory = _category.CategorySet.ToList().Find(c => c.Id == categoryId);
-
-            return SelectedCategory;
+                var SelectedCategory = _category.CategorySet.Select(c => c.Id == categoryId);
+                return (Category)SelectedCategory;  
         }
     }
 }

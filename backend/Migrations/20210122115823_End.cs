@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace backend.Migrations
 {
-    public partial class Papryk : Migration
+    public partial class End : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

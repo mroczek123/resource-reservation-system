@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using backend.entity.product;
 using backend.entity.table;
 using backend.entity.user;
 using backend.entity.utilites;
@@ -64,6 +65,17 @@ namespace Api.data
                     (
                         "Stolik 2",
                         3
+                    )
+                );
+                context.SaveChanges();
+            }
+
+            if (!context.CategorySet.Any())
+            {
+                context.CategorySet.AddRange(
+                    new Category
+                    (
+                        "Meat"
                     )
                 );
                 context.SaveChanges();
