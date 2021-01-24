@@ -6,6 +6,7 @@ import { Bills } from "./pages/Bills/Bills";
 import { Products } from "./pages/Products/Products";
 import { Employees } from "./pages/Employees/Employees";
 import { Order } from "./pages/Order/Order";
+import { Reservations } from "./pages/Reservations/Reservations";
 
 export function AppModule(): JSX.Element {
   return (
@@ -40,6 +41,9 @@ function Router() {
       </Route>
       <Route path={`${routeMatch.url}/bills`}>
         <Bills />
+      </Route>
+      <Route path={`${routeMatch.url}/reservations`}>
+        <Reservations />
       </Route>
     </Switch>
   );

@@ -16,7 +16,7 @@ export const StoreInitialState: StoreState = {
   user: new User({
     firstName: "Maciej",
     lastName: "Kulesza",
-    role: UserRole.WAITER,
+    role: UserRole.RESTAURATOR,
     birthDate: new Date(),
     email: "mck.kulesza@gmail.com",
     avatarUrl: "",
@@ -45,6 +45,9 @@ export const StoreInitialState: StoreState = {
         new Bill({id: "2", displayData: "Table 2", value: 123}),
         new Bill({id: "3", displayData: "Table 3", value: 19}),
       ]
+    },
+    reservations: {
+      entries: []
     }
   },
   modals: {

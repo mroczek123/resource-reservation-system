@@ -6,19 +6,19 @@ export function AboutUs(props: unknown): JSX.Element {
       name: "Patryk Kirszenstein",
       title: "Backend",
       imgSrc: "static/img/pkirszenstein.jfif",
-      description: "No one worth mentioning",
+      description: "Organised project and made backend working",
     },
     {
       name: "Maciej Kulesza",
       title: "Frontend",
       imgSrc: "static/img/mkulesza.jfif",
-      description: "No one worth mentioning",
+      description: "Made frontend lookin damn beatiful (at least by lazy student standards)",
     },
     {
       name: "Darek Gawęda",
       title: "Backend",
       imgSrc: "static/img/dgaweda.jpg",
-      description: "No one worth mentioning",
+      description: "Did great job on backend work.",
     },
   ];
 
@@ -38,7 +38,7 @@ export function AboutUs(props: unknown): JSX.Element {
                     className="circle responsive-img"
                     style={{ height: "150px" }}
                   />
-                  <div className="container">
+                  <div className="container center">
                     <h3>{author.name}</h3>
                     <h4>{author.title}</h4>
                     {author.description}
