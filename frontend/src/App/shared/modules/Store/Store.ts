@@ -14,9 +14,9 @@ import { Bill } from "../Bills/models/Bill";
 
 export const StoreInitialState: StoreState = {
   user: new User({
-    firstName: "Maciej",
-    lastName: "Kulesza",
-    role: UserRole.RESTAURATOR,
+    firstName: "Jakiś",
+    lastName: "Klient",
+    role: UserRole.CLIENT,
     birthDate: new Date(),
     email: "mck.kulesza@gmail.com",
     avatarUrl: "",

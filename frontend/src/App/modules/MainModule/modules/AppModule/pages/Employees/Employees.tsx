@@ -16,7 +16,7 @@ class _Employees extends React.Component {
         className="btn waves-effect waves-light"
         onClick={() => ModalService.displayModal(EmployeeEditModal())}
       >
-        Add to Menu
+        Add Employee
       </button>
     );
     return (

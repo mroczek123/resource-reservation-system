@@ -19,7 +19,8 @@ export class OrderService {
       orderEntry.amount += 1;
       OrderService.updateOrderEntry(orderEntry)
     } else {
-      orderEntry.id = String(Math.max(...Store.getState().resources.orderEntries.entries.map((val) => parseInt(val.id as string)))+1);
+      const existingIds = [0, ...Store.getState().resources.orderEntries.entries.map((val) => parseInt(val.id as string))]
+      orderEntry.id = String(Math.max(...existingIds)+1);
       dispatch({type: ActionType.APPEND_ORDER_ENTRY, payload: {entries: [orderEntry]}})
     }
   }
