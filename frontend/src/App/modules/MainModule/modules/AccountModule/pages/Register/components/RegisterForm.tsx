@@ -1,17 +1,22 @@
 import { Tooltiped } from "@src/App/shared/modules/Materialize/components/Tooltiped";
 import { translate } from "@src/App/shared/modules/Translation/translate";
 import * as React from "react";
+import { useHistory } from "react-router-dom";
 
 export function RegisterForm(props: unknown): JSX.Element {
+  const history = useHistory();
   const emailFieldRef = React.createRef<HTMLInputElement>();
   const passwordFieldRef = React.createRef<HTMLInputElement>();
-
+  const handleRegister = () => {
+    M.toast({html: "New User is Created.<br/> You can Log in."})
+    history.push("/app/account/log-in");
+  }
   return (
     <form>
       <EmailField inputRef={emailFieldRef} />
       <PasswordField inputRef={passwordFieldRef} />
       <div className="row">
-        <button className="btn">Register</button>
+        <button className="btn" type="button" onClick={handleRegister}>Register</button>
       </div>
     </form>
   );
